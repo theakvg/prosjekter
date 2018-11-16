@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+        <style>
+            canvas {
+                border: solid black 1px; 
+            }
+        
+        </style>
+</head>
+<body>
+    
+    <input type=color id="inpFar">
+    <canvas id="canvas"></canvas>
+    
+
+    <script>
+        let inpFar = document.getElementById("inpFar");
+        let canvas = document.getElementById("canvas");
+        let ctx = canvas.getContext("2d");
+        
+
+        canvas.height = innerHeight;
+        canvas.width = innerWidth;
+
+        document.onmousemove = function () {
+                var number = 4;
+                var x = event.clientX - 8;
+                var y = event.clientY - 34;
+                console.log(x);
+                console.log(y);
+
+                ctx.beginPath();
+                ctx.fillStyle = inpFar.value;
+                ctx.strokeStyle = inpFar.value;
+                ctx.arc(x, y, number, 0, Math.PI*2);
+                ctx.fill();
+                ctx.stroke();
+
+        
+        }
+        
+
+        
+
+        
+
+    </script>
+    
+</body>
+</html>

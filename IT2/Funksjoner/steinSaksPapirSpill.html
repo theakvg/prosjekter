@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<p id="pMaskin"></p>
+<p id="pDeg"></p>
+
+<button id="btnStein">Stein</button>
+<button id="btnSaks">Saks</button>
+<button id="btnPapir">Papir</button>
+
+
+<p id="svar"></p>
+<p id="svarM"></p>
+
+    <script>
+    
+        let pMaskin = document.getElementById("pMaskin");
+        let pDeg = document.getElementById("pDeg");
+        let btnStein = document.getElementById("btnStein");
+        let btnSaks = document.getElementById("btnSaks");
+        let btnPapir = document.getElementById("btnPapir");
+        let svar = document.getElementById("svar");
+        let svarM = document.getElementById("svarM");
+        
+      
+        let pM = 0;
+        let pD = 0;
+       
+
+        btnStein.onclick = function() {
+            let m = Math.floor(Math.random()*3 + 1);
+            if (m == 1 ) {
+                svar.innerHTML = "Det ble likt, prøv igjen";
+            } else if (m == 2) {
+                pD++;
+                svar.innerHTML = "Du vant denne runden"
+            } else if (m == 3) {
+                pM++;
+                svar.innerHTML = "Du tapte denne runden"
+            }
+            maSvar(m);
+            poeng();
+        }
+        btnSaks.onclick = function() {
+            let m = Math.floor(Math.random()*3 + 1);
+            if (m == 2 ) {
+                svar.innerHTML = "Det ble likt, prøv igjen";
+            } else if (m == 3 ) {
+                pD++;
+                svar.innerHTML = "Du vant denne runden"
+            } else if (m == 1) {
+                pM++;
+                svar.innerHTML = "Du tapte denne runden"
+            }
+            maSvar(m);
+            poeng();
+        }
+        btnPapir.onclick = function() {
+            let m = Math.floor(Math.random()*3 + 1);
+            if (m == 3 ) {
+                svar.innerHTML = "Det ble likt, prøv igjen";
+            } else if (m == 1) {
+                pD++;
+                svar.innerHTML = "Du vant denne runden"
+            } else if (m == 2) {
+                pM++;
+                svar.innerHTML = "Du tapte denne runden"
+            }
+            maSvar(m);
+            poeng();
+        }
+        function poeng() {
+            pMaskin.innerHTML = "Maskin har " + pM + " poeng.";
+            pDeg.innerHTML = "Du har " + pD + " poeng.";
+        } 
+       
+
+        function maSvar(m) {
+            if (m == 1) {
+                svarM.innerHTML = "Maskinen svarte stein";
+            } else if (m == 2) {
+                svarM.innerHTML = "Maskinen svarte saks";
+            } else if (m == 3) {
+                svarM.innerHTML = "Maskinen svarte papir";
+            }
+        }
+    
+    
+    </script>
+
+    
+</body>
+</html>

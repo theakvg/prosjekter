@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>beatBoksen</title>
+    <link rel="stylesheet" href="beaterStylesheet.css">
+</head>
+<body>
+    
+    <h1 id="headline">Beater</h1>
+
+        <div id="beater">
+            <div class="bLinje" id="bLinje1">
+                <button id="beat11" class="bboks"></button>
+                <button id="beat12" class="bboks"></button>
+                <button id="beat13" class="bboks"></button>
+                <button id="beat14" class="bboks"></button>
+                <button id="beat15" class="bboks"></button>
+            </div>
+            <div class="bLinje" id="bLinje2">
+                <button id="beat21" class="bboks"></button>
+                <button id="beat22" class="bboks"></button>
+                <button id="beat23" class="bboks"></button>
+                <button id="beat24" class="bboks"></button>
+                <button id="beat25" class="bboks"></button>
+            </div>
+            <div id="bLinje4" class="bLinje">
+                <button id="beat31" class="bboks"></button>
+                <button id="beat32" class="bboks"></button>
+                <button id="beat33" class="bboks"></button>
+                <button id="beat34" class="bboks"></button>
+                <button id="beat35" class="bboks"></button>
+            </div>
+            <div id="bLinje4" class="bLinje">
+                <button id="beat41" class="bboks"></button>
+                <button id="beat42" class="bboks"></button>
+                <button id="beat43" class="bboks"></button>
+                <button id="beat44" class="bboks"></button>
+                <button id="beat45" class="bboks"></button>
+            </div>
+            <div id="bLinje5" class="bLinje">
+                <button id="beat51" class="bboks"></button>
+                <button id="beat52" class="bboks"></button>
+                <button id="beat53" class="bboks"></button>
+                <button id="beat54" class="bboks"></button>
+                <button id="beat55" class="bboks"></button>
+            </div>
+        </div>
+
+    <script>
+        const beater = document.getElementById("beater");
+        const beats = document.querySelectorAll(".bboks");
+        console.log(beats);
+        const bboks = document.getElementsByClassName("bboks");
+
+        let btnColor = ["#f3a683", "#f5cd79", "#546de5", "#e15f41", "#c44569", "#574b90", "#f78fb3", "#3dc1d3", "#e66767", "#303952"];
+
+        function tilfeldigFarge(elem) {
+           tall = Math.floor(Math.random()*10)
+           farge = btnColor[tall];
+           if (elem.style.backgroundColor === "rgb(56, 56, 56)") {
+                elem.style.backgroundColor = farge;
+                console.log(elem.style.backgroundColor);
+            } else {
+                elem.style.backgroundColor = "#383838";
+                console.log(farge);
+                console.log(elem.style.backgroundColor);
+            };
+           
+        } 
+
+        for (let i = 0; i < beats.length; i++) {
+                beats[i].onclick = () => tilfeldigFarge(beats[i]);
+           
+            
+        }
+
+
+    
+        
+
+
+        
+
+
+
+    
+    
+    </script>
+
+
+
+</body>
+</html>

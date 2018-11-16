@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <input id="inp" type=number>
+    <button id="btn">Gi svar</button>
+    <p id="svar"></p>
+    <p id="frs"></p>
+
+
+    
+
+    <script>
+    
+        let hemmeligTall = Math.floor(Math.random() * 100 + 1); 
+        console.log(hemmeligTall);
+        let inp = document.getElementById("inp");
+        let svar = document.getElementById("svar");
+        let btn = document.getElementById("btn");
+        let frs = document.getElementById("frs");
+        
+        var i = 0;
+        
+        
+         btn.onclick = function() {
+             i++; 
+             frs.innerHTML = "Antall forsøk: " + i;
+                if (inp.value > hemmeligTall) {
+                    svar.innerHTML = "Ditt tall er for høyt";
+                    } else if (inp.value < hemmeligTall) {
+                    svar.innerHTML = "Ditt tall er for lavt";
+                    } else {
+                        document.write("DITT TALL ER KORREKT")
+                    }
+                
+            }
+        
+
+
+
+        
+        
+
+    </script>
+
+    
+</body>
+</html>

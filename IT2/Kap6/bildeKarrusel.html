@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="stilark.css">
+</head>
+<body>
+
+    <main>
+        <div id="karrusell">
+            <h2>Bilder fra Florida 2015</h2>
+            <img src="bilderIT2/1.JPG" heigt="100px" width="200px" id="imgKar">
+            <p></p>
+            <div id="boks">
+                <button id="btnVenstre">Venstre</button>
+                <button id="btnHøyre">Høyre</button>
+                <button id="btnTilfeldig">Tilfeldig</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const imgKar = document.getElementById("imgKar");
+        const btnVenstre = document.getElementById("btnVenstre");
+        const btnHøyre = document.getElementById("btnHøyre");
+        const btnTilfeldig = document.getElementById("btnTilfeldig");
+
+        let tall = 0;
+        let bilder = ["1.JPG", "2.JPG", "3.JPG", "4.JPG"];
+
+        btnHøyre.onclick = function() {
+            if (tall < bilder.length - 1) {
+                tall += 1; 
+                imgKar.src = "bilderIT2/" + bilder[tall];
+            } else {
+                tall = 1; 
+                imgKar.src = "bilderIT2/" + bilder[tall];
+            }
+        }
+        btnVenstre.onclick = function() {
+            if (tall > 0) {
+                tall -= 1; 
+                imgKar.src = "bilderIT2/" + bilder[tall];
+            } else {
+                tall = bilder.length - 1; 
+                imgKar.src = "bilderIT2/" + bilder[tall];
+            }
+        }
+        btnTilfeldig.onclick = function() {
+            tall = Math.floor(Math.random()*bilder.length);
+            imgKar.src = "bilderIT2/" + bilder[tall];            
+        }
+        
+        
+    
+    
+    </script>
+
+
+</body>
+</html>

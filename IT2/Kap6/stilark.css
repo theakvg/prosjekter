@@ -1,0 +1,61 @@
+#app{
+    background-color: lightseagreen;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3%;
+}
+#boks{
+    border: solid 1px white;
+    text-align: center;
+    padding: 2%;
+}
+#divTeller{
+    font-size: 64px;
+}
+#divAntall {
+    font-size: 64px;
+}
+#skjema{
+    text-align: center;
+}
+body{
+    color: white;
+}
+#btnRegistrer{
+    color: white;
+    background-color: lightseagreen;
+}
+#btnBestill{
+    color: white;
+    background-color: lightseagreen;
+}
+#btnUt{
+    color: white;
+    background-color: lightseagreen;
+    margin: 10px;
+    padding: 10px;
+}
+#btnInn{
+    color: white;
+    background-color: lightseagreen;
+    margin: 10px;
+    padding: 10px;
+}
+#bokser{
+    text-align: center;
+    margin-bottom: 5px; 
+}
+#karrusell{
+    background-color: lightseagreen;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3%;
+    text-align: center;
+}
+#imgKar{
+    
+}

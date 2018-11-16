@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="stilark.css">
+</head>
+<body>
+    <main>
+
+        <div id="app">
+
+            <h2>Mennesker i salen</h2>
+            <div id="bokser">
+                <button id="btnInn">+</button>
+                <button id="btnUt">-</button>
+            </div>
+            
+
+            <div id="boks">
+                <h4>Antall mennesker i salen:</h4>
+                <div id="divAntall">0</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const btnInn = document.getElementById("btnInn");
+        const btnUt = document.getElementById("btnUt");
+        const divAntall = document.getElementById("divAntall");
+
+        let antall = 0;
+
+        window.onkeydown = function(event) {
+            if (event.code === "ArrowUp") {
+                leggTil();
+            }
+            if(event.code === "ArrowDown") {
+                trekkFra();
+            }
+        }
+
+        btnInn.onclick = leggTil;
+        btnUt.onclick = trekkFra
+
+        function leggTil() {
+            antall += 1;
+            divAntall.innerHTML = antall;
+            if(antall === 50){
+                alert("Salen nærmer seg full!");
+            } else if (antall === 55) {
+                alert("Salen nærmer seg full!");
+            } else if (antall > 59) {
+                alert("SALEN ER FULL!");
+            };
+            console.log(true);
+        }
+
+
+        function trekkFra() {
+            antall -= 1;
+            divAntall.innerHTML = antall;
+            if (antall < 0){
+                alert("Du kan ikke ha mindre enn null mennesker i salen")
+            }
+        }
+
+        
+    
+    
+    </script>
+
+</body>
+</html>

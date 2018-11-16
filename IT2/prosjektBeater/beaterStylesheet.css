@@ -1,0 +1,33 @@
+body {
+    background-color: #383838;
+    text-decoration: none;
+
+}
+#headline {
+    color: white;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#beater {
+    height: 580px;
+    width: 577px;
+    background-color: #202020;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.bboks {
+    height: 100px;
+    width: 100px;
+    background-color:#383838;
+    margin: 5px;
+    border: none;
+}
+.bLinje {
+    margin: 5px;
+}
+

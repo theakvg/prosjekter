@@ -5,11 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style type="text/css">
+
+        body {
+            margin: 0;
+        }
+        
+        canvas {
+            border: 1px solid black;
+            margin: 0;
+        }
+    
+    </style>
 </head>
 <body>
 
-    <h1>Hello world</h1>
-    <script></script>
+    <canvas id="canvas"></canvas>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        
+
+        for (var i = 0; i > 20; i++) {
+            var x = Math.random() * window.innerWidth; 
+            var y = Math.random() * window.innerHeigth;
+
+            ctx.beginPath();
+            ctx.arc(x, y, 25, 0, Math.PI*2);
+            ctx.strokeStyle = "red";
+            ctx.stroke();
+        };
+
+
+      
+    
+    
+    
+    </script>
     
 </body>
 </html>
