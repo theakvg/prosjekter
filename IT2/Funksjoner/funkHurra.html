@@ -10,27 +10,34 @@
 
     <script>
 
-        var tall = 27; //tall er en GLOBAL variabel, kan brukes hvor som helst, også inne i funksjonen
+        var tall = 27;       //tall er en GLOBAL variabel, kan brukes hvor som helst, også inne i funksjonen
     
         function hurraMedNavn (navn) {
-            var tekst = "Hurra for " + navn + " du blir " + tall + " år"; //tekst er en LOKAL variabel, kan ikke bli brukt utenfor funksjoner. kalt function-scope
+            var tekst = "Hurra for " + navn + " du blir " + tall + " år";       //tekst er en LOKAL variabel, kan ikke bli brukt utenfor funksjoner. kalt function-scope
             document.write(tekst);
         }
 
-        hurraMedNavn ("Thor", 27); //Husk å inkludere parametere når de er gjeldende i funksjonen ellers kommer det opp "undefined"
+        hurraMedNavn ("Thor", 27);       //Husk å inkludere parametere når de er gjeldende i funksjonen ellers kommer det opp "undefined"
     
-        // let og var, let brukes som regel istedenfor var. Let vil være en lokal variabel når brukt i for-loops, mens var vil være en global variabel i 
-        // når den blir brukt i for - loops
+                // let og var, let brukes som regel istedenfor var. Let vil være en lokal variabel når brukt i for-loops, mens var vil være en global variabel i 
+                // når den blir brukt i for - loops
 
         for (var i = 0; i < 10; i++){
             document.write(i);
         }
-        console.log(i); //vil ikke få en feilmelding, kode vil kjøre
+        console.log(i);         //vil ikke få en feilmelding, kode vil kjøre. i er fremdeles definert utenfor for-loopen
 
         for (let j = 0; j < 10; j++) {
             document.write(j)
         }
-        console.log(j); //vil få en feilmelding, kode vil ikke kjøre 
+        console.log(j);         //vil få en feilmelding, kode vil ikke kjøre. j er ikke definert utenfor for-loopen 
+
+
+        // ---------- anonyme funksjoner - hendelsesstyrte funksjoner -------------
+
+        // ---------- funksjoner med returnverdier ------------
+
+
 
     </script>
 

@@ -6,10 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>beatBoksen</title>
     <link rel="stylesheet" href="beaterStylesheet.css">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
 </head>
 <body>
     
-    <h1 id="headline">Beater</h1>
+    <h1 id="headline">DrumPad</h1>
+    <h5 id="headline2">- live life, beat by beat</h5>
+    <div id="klokke">0</div>
+    <button id="btnRec">Record beat</button>
 
         <div id="beater">
             <div class="bLinje" id="bLinje1">
@@ -49,38 +54,144 @@
             </div>
         </div>
 
+        <audio id="testAud" src="soundsDrums/ride.wav" autoplay="false" class="audioClass"></audio>
+        <audio id="recAud" src="soundsDrums/ride.wav" autoplay="false" class="audioClass"></audio>
+
+
     <script>
         const beater = document.getElementById("beater");
         const beats = document.querySelectorAll(".bboks");
-        console.log(beats);
         const bboks = document.getElementsByClassName("bboks");
+        var testAud = document.getElementById("testAud");
+        const klokke = document.getElementById("klokke");
+        const btnRec = document.getElementById("btnRec");
+        const recAud = document.getElementById("recAud");
 
-        let btnColor = ["#f3a683", "#f5cd79", "#546de5", "#e15f41", "#c44569", "#574b90", "#f78fb3", "#3dc1d3", "#e66767", "#303952"];
 
+
+        let btnColor = ["#f3a683", "#f5cd79", "#546de5", "#e15f41", "#c44569", "#574b90", "#f78fb3", "#3dc1d3", "#e66767", "#303952", "#ffb3ba", "#ffdfba", "#ffffba", "#baffc9", "#bae1ff"];
+        let btnSound = [["boom", "KeyQ"],["clap", "KeyW"],["hihat", "KeyE"],["kick", "KeyR"],["openhat", "KeyT"], ["ride", "KeyY"], ["tink", "KeyI"], ["tom", "KeyO"], ["ale00", "KeyP"], ["ale02", "KeyA"], ["ale03", "KeyS"], ["ale07", "KeyD"], ["c100", "KeyU"]];
+
+        //['test2','test', ['test inne i array', 'verdi2']]  console.log(btnSound[2][1];)
+
+        let antall = 0;
+        let lyd1 = [];
+        let lyd2 = [];
+        let lyd3 = [];
+        let lyd4 = [];
+
+        setInterval (CS, 1000);
+        async function CS() {
+            if (antall === 4) {
+                antall = 0;
+            } else {
+                antall = antall + 1;
+                klokke.innerHTML = antall;
+            };
+        };
+
+        setInterval (record, 1000)
+        async function record() {
+            if (antall === 1) {
+                for (let u = 0; u < lyd1.length; u++) {
+                    recAud.src = lyd1[u];
+                    recAud.play();
+                };
+            };
+            if (antall === 2) {
+                for (let u = 0; u < lyd2.length; u++) {
+                    recAud.src = lyd2[u];
+                    recAud.play();
+                };
+            };
+            if (antall === 3) {
+                for (let u = 0; u < lyd3.length; u++) {
+                    recAud.src = lyd3[u];
+                    recAud.play();
+                };
+            };
+            if (antall === 4) {
+                for (let u = 0; u < lyd4.length; u++) {
+                    recAud.src = lyd4[u];
+                    recAud.play();
+                };
+            };
+        }        
+
+        window.onkeydown = function (event) {
+            for (let i = 0; i < btnSound.length; i++) {
+                if (event.code === btnSound[i][1]) {
+                    testAud.src = "soundsDrums/" + btnSound[i][0] + ".wav";
+                    testAud.play();
+                    farge = btnColor[i];
+                    beats[i].style.backgroundColor = farge;
+                    beats[i].style.boxShadow =  "0px " + "0px " + "20px " + farge;
+                    };              
+            }
+            if (antall === 1) {
+                lyd1.push(testAud.src)
+            } else if (antall === 2){
+                lyd2.push(testAud.src)
+            } else if (antall === 3){
+                lyd3.push(testAud.src)
+            } else if (antall === 4){
+                lyd4.push(testAud.src)
+            };
+            console.log(testAud.src);
+        };      
+        
+        window.onkeyup = function (event) {
+            for (let i = 0; i < btnSound.length; i++) {
+                if (event.code === btnSound[i][1]) {
+                    testAud.load();
+                    testAud.pause();
+                    beats[i].style.backgroundColor = "#383838";
+                    beats[i].style.boxShadow =  "0px " + "0px " + "20px " + "#202020";
+                    }
+                };
+            };
+        
+
+        for (let i = 0; i < btnSound.length; i++) {
+            beats[i].onmousedown = function () {
+                testAud.src = "soundsDrums/" + btnSound[i][0] + ".wav";
+                testAud.play();
+                farge = btnColor[i];
+                console.log(farge);
+                beats[i].style.backgroundColor = farge;
+                beats[i].style.boxShadow =  "0px " + "0px " + "20px " + farge;
+                }
+            beats[i].onmouseup = function () {
+                testAud.load();
+                testAud.pause();
+                beats[i].style.backgroundColor = "#383838";
+                beats[i].style.boxShadow =  "0px " + "0px " + "20px " + "#202020";
+                };  
+
+                /*
         function tilfeldigFarge(elem) {
            tall = Math.floor(Math.random()*10)
            farge = btnColor[tall];
-           if (elem.style.backgroundColor === "rgb(56, 56, 56)") {
+           console.log(elem.style.backgroundColor);
+           if (elem.style.backgroundColor === "rgb(56, 56, 56)" || elem.style.backgroundColor=== "#383838"){
                 elem.style.backgroundColor = farge;
+                elem.style.boxShadow =  "0px " + "0px " + "20px " + farge;
                 console.log(elem.style.backgroundColor);
             } else {
                 elem.style.backgroundColor = "#383838";
+                elem.style.boxShadow =  "0px " + "0px " + "20px " + "#202020";
                 console.log(farge);
                 console.log(elem.style.backgroundColor);
             };
-           
         } 
-
-        for (let i = 0; i < beats.length; i++) {
-                beats[i].onclick = () => tilfeldigFarge(beats[i]);
-           
-            
-        }
-
-
-    
+        */    
+        };
         
 
+        
+        
+        
+        
 
         
 

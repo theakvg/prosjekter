@@ -1,16 +1,32 @@
 body {
     background-color: #383838;
     text-decoration: none;
+    background-image: url("imgPB2.jpg");
 
 }
 #headline {
-    color: white;
+    color: #202020;
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
-
+#headline2 {
+    color: #202020;
+    position: absolute;
+    left: 50%;
+    top: 40px;
+    transform: translate(-50%, -50%);
+    font-family: 'Montserrat', sans-serif;
+}
+#headline3 {
+    color: #202020;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Montserrat', sans-serif;
+    
+}
 #beater {
     height: 580px;
     width: 577px;
@@ -20,14 +36,39 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+#imgPB {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%)
+}
 .bboks {
     height: 100px;
     width: 100px;
-    background-color:#383838;
+    background-color: rgb(56, 56, 56);
     margin: 5px;
     border: none;
+    outline: none;
+    box-shadow: #202020 0px 0px 12px;
 }
 .bLinje {
     margin: 5px;
+}
+a {
+    text-decoration: none;
+    color: #202020;
+}
+#btnVidere {
+    background-color: goldenrod;
+    border: none;
+    outline: none;
+    padding: 5px;
+}
+#divBtn {
+    padding: 2px;
+    width: 100px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 90%;
+
 }
 
