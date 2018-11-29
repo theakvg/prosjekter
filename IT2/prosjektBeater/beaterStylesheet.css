@@ -4,12 +4,22 @@ body {
     background-image: url("imgPB2.jpg");
 
 }
-#headline {
+#divOverskrifterF{
     color: #202020;
     position: absolute;
+    width: 500px;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Passion One', cursive;
+    font-size: 130%;
+}
+#divOverskrifterH{
+    color: #202020;
+    position: absolute;
+    width: 400px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Passion One', cursive;
 }
 #headline2 {
     color: #202020;
@@ -18,6 +28,7 @@ body {
     top: 40px;
     transform: translate(-50%, -50%);
     font-family: 'Montserrat', sans-serif;
+    
 }
 #headline3 {
     color: #202020;
@@ -25,14 +36,22 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Montserrat', sans-serif;
-    
+}
+#headline3H {
+    color: #202020;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 38px;
+    top: 25px;
 }
 #beater {
     height: 580px;
     width: 577px;
     background-color: #202020;
     position: absolute;
-    top: 50%;
+    top: 51%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -60,15 +79,34 @@ a {
     background-color: goldenrod;
     border: none;
     outline: none;
-    padding: 5px;
+    padding: 10px;
+    font-size: 150%;
 }
 #divBtn {
     padding: 2px;
-    width: 100px;
+    width: 180px;
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
     top: 90%;
-
+}
+#divBtns {
+    padding: 7px;
+    position: absolute;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+}
+.btnFB {
+    background-color: goldenrod;
+    border: none;
+    outline: none;
+    width: 130px;
+    padding: 10px;
+    font-size: 130%;
+    text-align: center;
+}
+#klokke {
+    width: 110px;
 }
 
