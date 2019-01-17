@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>oppgaver fra side 210</title>
+</head>
+<body>
+
+    <ol id="olListe"></ol>
+    <p id="pListe"></p>
+    <ol id="olBok"></ol>
+    <p id="temp"></p>
+    <p id="menskjer"></p>
+    <ol id="olFilm"></ol>
+    
+    <script>
+
+        let pListe = document.querySelector("#pListe");
+        let olListe = document.querySelector("#olListe");
+        let olBok = document.querySelector("#olBok");
+        let temp = document.querySelector("#temp");
+        let menskjer = document.querySelector("#menskjer");
+        let olFilm = document.querySelector("#olFilm");
+        
+        let matvarer = ["ost", "brød", "paprika", "kaviar"];
+
+        for (let matvare of matvarer){
+            olListe.innerHTML += "<li>" + matvare + "</li>";
+        }
+
+        for (let i = 0; i < matvarer.length; i++) {
+            pListe.innerHTML += matvarer[i] + ", ";
+        }
+
+        let lesteBøker = [" Harry Potter serien", " Enders game serien", " Sofies verden", " Percy Jackson serien", " 1984"]
+
+        for (let bok of lesteBøker) {
+            olBok.innerHTML += "<li>" + bok + "</li>";
+        }
+        lesteBøker.sort();
+        document.write(lesteBøker);
+
+        let tempDram = [3,4,5,6,5,5,6,4,4,5]
+
+        let i = 0;
+        let k = 0;
+
+        for (var temperatur of tempDram) {
+            if (temperatur < 5){
+                i++;
+            }
+            k +=temperatur;
+        }
+
+        temp.innerHTML = "Antall temperaturer under 5 er " + i;
+
+        tempDram.sort(function(a,b){
+            return a-b
+        });
+        temp.innerHTML+= " pluss temperaturen i stigende rekkefølge: " + tempDram;
+        
+        k = k/tempDram.length;
+        temp.innerHTML += ". Gjennomsnittstemperatur: " + k;
+
+
+        let mennesker = [
+            {navn: "Tore", Alder: 33},
+            {navn: "Hans", Alder: 23},
+            {navn: "Jørgen", Alder: 17},
+            {navn: "Bjørn", Alder: 67}
+        ];
+
+        for (let menneske of mennesker) {
+            menskjer.innerHTML += " navn: " + menneske.navn + " alder: " + menneske.Alder;
+            
+        }
+
+        mennesker.sort(function(a,b){
+            return b.Alder - a.Alder;
+        });
+
+        for (let menn of mennesker) {
+            menskjer.innerHTML += menn.navn;
+        }
+
+        let settFilmer = [
+            {navn: "Gustaf", antFilm: 10},
+            {navn: "Mari", antFilm: 5},
+            {navn: "Henrik", antFilm: 17},
+            {navn: "Jostein", antFilm: 4},
+            {navn: "Thea", antFilm: 8}
+        ];
+
+        settFilmer.sort(function(a,b){
+            return b.antFilm - a.antFilm;
+        });
+
+        let s = 0;
+
+        for (let antall of settFilmer) {
+            olFilm.innerHTML += "<li>" + " navn: " + antall.navn + " antall filmer: " + antall.antFilm + "</li>";
+
+            s += antall.antFilm;
+        };
+        
+        
+
+        olFilm.innerHTML += s;
+        
+        
+        
+
+        
+        
+    
+    
+    </script>
+
+</body>
+</html>
