@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adjektiv historie</title>
+</head>
+<body>
+
+<input id="adjektiv" type="text" placeholder="Skriv inn adjektiv nr.1">
+
+
+<button id="btnHistorie">Lag historie</button>
+
+
+
+<script>
+
+    let adjektiv = document.getElementById("adjektiv");
+
+    let btnHistorie = document.getElementById("btnHistorie");
+
+    var mineAdjektiv = [];
+
+    adjektiv.onchange = function () {
+        mineAdjektiv.push(adjektiv);
+    };
+
+    /*btnHistorie.onclick = function() {
+        document.write(`
+        En ${adjektiv1.value} vinterdag skulle den ${adjektiv2.value} IT-klassen på overnettingstur.
+        Alle de ${adjektiv3.value} elevene hadde med seg langrennski, soveposer og en ${adjektiv4.value} sekk med
+        mat og varmt tøy. alle gledet seg til denne ${adjektiv5.value} turen. Kristine hadde på seg
+        en ${adjektiv6.value} ny lue, og den ${adjektiv7.value} Tormod hadde på seg en ${adjektiv8.value} jakke. Den
+        ${adjektiv9.value} Anne og ${adjektiv10.value} Sabrina hadde nye langrennsski som de hadde fått til jul. `)
+    };
+
+
+
+</script>
+
+</body>
+</html>

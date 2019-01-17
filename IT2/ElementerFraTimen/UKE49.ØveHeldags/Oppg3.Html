@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="Number" id="inpAlder" placeholder="Skriv din alder">
+    <input type="checkbox" id="inpStudRab" >
+    <label for="inpStudRab">Student?</label>
+    <input type="checkbox" id="inpPensRab" >
+    <label for="inpPensRab">Pensjonist?</label>
+    <button id="btnAlder">Billettpriser</button>
+    <p id="pBillett"></p>
+    <p id="tall1"></p>
+    <p id="tall2"></p>
+
+
+    <script>
+    
+    /* OPPGAVE 3
+
+    A)
+
+    #1 = tall < 5
+    #2 = tall === 5
+    
+
+    */
+
+   var tall = Math.floor(Math.random()*10);
+   if (tall < 5) {
+       document.write("Tallet er minde enn 5");
+   } else if (tall === 5) {
+       document.write("Tallet er 5")
+   } else {
+       document.write("Taller er større enn 5")
+   }
+   console.log(tall);
+
+   // B)
+
+   let inpAlder = document.getElementById("inpAlder");
+   let btnAlder = document.getElementById("btnAlder");
+   let pBillett = document.getElementById("pBillett");
+   let inpStudRab = document.getElementById("inpStudRab");
+   let inpPensRab = document.getElementById("inpPensRab");
+   
+   let vPris = 70;
+   let uPris = 30;
+
+   btnAlder.onclick = function () {
+    let a = inpAlder.value;
+       if (a < 5) {
+            pBillett.innerHTML = "Du reiser GRATIS!";
+       } else if (a < 18) {
+           pBillett.innerHTML = "Billetten din koster " + uPris + "kr";
+       } else if ( a > 17 && inpPensRab.checked) {
+           pBillett.innerHTML = "Billetten din koster " + vPris/100*40 + "kr" ;
+       } else if ( a > 17 && inpStudRab.checked) {
+           pBillett.innerHTML = "Billetten din koster " + vPris/100*80 + "kr";
+       } else  {
+           pBillett.innerHTML = "Billetten din koster " + vPris + "kr";
+       }
+   };
+
+   // C)
+
+   let tall1 = document.getElementById("tall1");
+   let tall2 = document.getElementById ("tall2");
+
+   for (g = 0; g < 11; g++) {
+       tall1.innerHTML += g;
+   };
+   for (h = 4; h < 31; h = h+4) {
+       tall2.innerHTML += h + " ";
+   };
+
+
+
+
+    
+        
+        
+        
+        
+        
+    </script>
+    
+</body>
+</html>

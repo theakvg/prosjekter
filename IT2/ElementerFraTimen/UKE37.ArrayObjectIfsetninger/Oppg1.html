@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgave 1</title>
+</head>
+<body>
+
+    <button id="arrayWrite" >Vis Liste</button>
+    <button id="arrayNr3" >Klikk Her</button>
+    <input id="inpFilm" type="text" placeholder="Legg til film">
+    <button id="btnAdd">Legg til</button>
+
+    <div id="nr1"></div>
+    <div id="nr2"></div>
+
+
+
+
+    <script>
+
+        var arrayWrite = document.getElementById("arrayWrite"); //henter opp knappen som skriver ut lista
+        var arrayNr3 = document.getElementById("arrayNr3"); // henter knappen som skriver ut nr. 3
+        var btnAdd = document.getElementById("btnAdd"); // henter knappen som skal legge til en film
+        var inpFilm = document.getElementById("inpFilm"); //henter inour
+
+        var nr1 = document.getElementById("nr1");
+        var nr2 = document.getElementById("nr2");
+
+
+        var minArray = [" Back to the Future"," Star wars: Return of the Jedi", " Lord of the Rings", " Fast and the Furious"];
+
+
+
+        arrayWrite.onclick = function() {
+            nr1.innerText = minArray;
+        };
+        arrayNr3.onclick = function() {
+            nr2.innerText = minArray[2];
+        };
+        btnAdd.onclick = function() {
+            minArray.push(" " + inpFilm.value);
+        };
+
+
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDO app</title>
+</head>
+<body>
+    
+    <form action="">
+        <label for="navn">Navn:</label>
+        <input type="text" id="navn">
+        <label for="huske">Må huskes:</label>
+        <input type="text" id="huske">
+        <button id="knapp">Send inn</button>
+    </form>
+    
+    <ul id="huskeListe">
+
+    </ul>
+
+    <script>
+        
+        let inputFelt = document.querySelectorAll("input");
+        let knapp = document.getElementById("knapp");
+        let huskeListe = document.querySelector("#huskeListe");
+        let navn = document.getElementById("navn");
+        let huske = document.querySelector("#huske");
+
+
+        let todos = [];
+
+        function leggTilTodo() {
+            /*for (let input of inputFelt) {
+                todos.push(input.value);
+            }*/
+            todos.push(navn.value);
+            huskeListe.innerHTML = todos;
+            console.log(todos);
+        }
+        knapp.onclick = leggTilTodo();
+
+
+    
+    
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>oppgave 6</title>
+</head>
+<body>
+
+<script>
+    var e = ("A well a bird, bird, bird, the bird is the word" );
+    var t = ("A well a bird, bird, bird, well the bird is the word");
+    var v = ("A well a everybody's heard about the bird" + "<br>" + "B-b-b bird, bird, bird, b-bird's the word");
+    var a = ("Surfin' bird" + "<br>" + "B-b-b aah, aah!");
+
+
+    function sang() {
+        for (var k = 0; k < 4; k++) {
+            if (k % 2 === 0) {
+                document.write(v + "<br>" + "<br>");
+            } else if (k % 2 === 1) {
+                document.write(refreng() + "<br>" + "<br>");
+            }
+        }
+        document.write(a + "<br>" + "<br>");
+    }
+
+    function refreng() {
+        for (var s = 0; s < 6; s++) {
+            if (s % 2 === 0) {
+                document.write(e + "<br>");
+            } else {
+                document.write(t + "<br>");
+            }
+        }
+    }
+    sang()
+
+
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div>
+        <h1>FARENHEIT TIL CELSIUS-KALKULATOR</h1>
+
+        <label for="inpTemp">Skriv inn temperatur:</label>
+        <input type="number" id="inpTemp">
+        
+        <button id="btnBeregn">Utfør beregninger</button>
+        <div id="divTemp"></div>
+        <div>
+            <img src="bilder/termometer.png">
+        </div>
+    </div>
+
+    <script>
+
+        let inpTemp = document.getElementById("inpTemp");
+        let btnBeregn = document.getElementById("btnBeregn");
+        let divTemp = document.getElementById("divTemp");
+        
+        let cel = 0;
+
+        btnBeregn.onclick = function () {
+            cel = (inpTemp.value - 32)*(5/9);
+            divTemp.innerHTML = cel + " grader";
+            
+        }
+    
+        
+    </script>
+
+
+
+
+</body>
+</html>

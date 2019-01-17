@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgave 2</title>
+</head>
+<body>
+
+        <input id="inpSang" placeholder="Bytt sangen til Wrabel" type="text">
+        <button id="btnBytt">Bytt</button>
+
+        <button id="btnSang2">Sang til Wrabel</button>
+        <div id="sang2"></div>
+
+
+
+
+        <script>
+
+            let btnSang2 = document.getElementById("btnSang2");
+            let btnBytt = document.getElementById("btnBytt");
+            let sang2 = document.getElementById("sang2");
+            let inpSang = document.getElementById("inpSang");
+
+
+            var sang01 = {
+                tittel: "Rolling in the deep",
+                artist: "Adele"
+            };
+            var sang02 = {
+                tittel: "The Village",
+                artist: "Wrabel"
+            };
+            var sang03 = {
+                tittel: "All over",
+                artist: "CRUSIR"
+            };
+            btnBytt.onclick = function() {
+                sang02.tittel = inpSang.value;
+            };
+            btnSang2.onclick = function() {
+                sang2.innerText = sang02.tittel;
+            };
+
+
+
+        </script>
+</body>
+</html>

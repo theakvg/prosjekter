@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+    <meta charset="UTF-8">
+    <title>Enkel kalkulator</title>
+</head>
+<body>
+
+    <input id="inpTall1" type="Number" placeholder="Skriv inn første tall">
+    <span> + </span>
+    <input id="inpTall2" type="number" placeholder="Skriv inn andre tall">
+    <span id="spnResultat" ></span>
+    <br>
+    <!--<button id="btnRegnUt">Regn ut</button> -->
+    <script>
+
+        var inpTall1 = document.getElementById("inpTall1");
+        var inpTall2 = document.getElementById("inpTall2");
+        var spnResultat = document.getElementById("spnResultat");
+        var btnRegnUt = document.getElementById("btnRegnUt");
+
+
+
+
+        inpTall2.onkeyup = function() {
+            spnResultat.innerHTML = Number(inpTall1.value) + Number(inpTall2.value);
+        }
+
+    </script>
+
+</body>
+</html>

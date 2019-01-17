@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>While loop, 0 - 100</title>
+
+    <style>
+        canvas {
+            border: solid;
+        }
+    </style>
+
+</head>
+<body>
+
+<!--
+
+------------------------ OPPGAVE FRA THOR --------------------------
+
+
+<script>
+
+    var a = 0;
+    while (a <= 100) {
+            console.log(a);
+            document.write (a + " ");
+            a++;
+    }; -->
+
+<!--
+
+------------------------ OPPGAVE 1, BOKA--------------------------
+
+
+<script>
+
+    var vinner = 0;
+    while (vinner !== 10) {
+        vinner = Math.floor(Math.random() * 10 + 1)
+        if (vinner == 10) {
+            document.write("Du VANT, ditt tall var " + vinner);
+        }
+        else {
+            document.write("Du tapte, ditt tall var " + vinner);
+            document.write("<br>");
+        };
+
+    };
+
+
+</script> -->
+
+<!--
+
+
+------------------------ OPPGAVE 2, BOKA--------------------------
+
+
+
+<canvas id="canvas" height="700px" width="700px">
+    Din nettleser støtter ikke canvas
+
+</canvas>
+
+<script>
+
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    var h = 0;
+    var b = 0;
+    ctx.strokeStyle = "green";
+
+    while (h <= 700) {
+        ctx.moveTo(0, h);
+        ctx.lineTo(700, h);
+
+
+        h = h + 35;
+
+        console.log(h);
+        if (h >= 350) {
+            ctx.strokeStyle = "green";
+        } else {ctx.strokeStyle = "blue";}
+        ctx.stroke();
+    };
+    while (b <= 700) {
+        ctx.moveTo(b, 0);
+        ctx.lineTo(b, 700);
+        ctx.stroke();
+
+        b = b + 35;
+
+        console.log(b);
+        if (b >= 350) {
+            ctx.strokeStyle = "red";
+        } else {ctx.strokeStyle = "blue";}
+        ctx.stroke();
+
+    };
+
+
+</script> -->
+
+<!--
+
+------------------------ OPPGAVE 3, BOKA--------------------------
+
+
+
+<script>
+
+    var terningSum = 0;
+
+    while (terningSum < 45) {
+        terningSum = terningSum + (Math.floor(Math.random()*6 + 1));
+        document.write("Summen av terningkastene er: " + terningSum);
+        document.write("<br>");
+        console.log(terningSum.value);
+    }
+
+    // Oppgave 3,a
+    var i = 10;
+
+    while (i <= 30) { // med i < 30, inkluderes ikke 30, mens med i <= 30 inkluderes 30.
+        document.write(i + " + ");
+        i = i + 2;  // med i = i + 2 får du bare par-tall, mens med i++, får du alle.
+    }
+</script> -->
+
+
+<!--
+
+------------------------ OPPGAVE 4, BOKA--------------------------
+
+
+
+<script>
+
+    var g = 0;
+
+    while (g <= 80) {
+        document.write(g);
+        document.write("<br>");
+        g = g + 8;
+
+    };
+
+
+</script> -->
+
+
+
+</body>
+</html>

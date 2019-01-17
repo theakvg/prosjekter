@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Fargevelger</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <p>Heihei</p>
+
+    <input id="farge" type="text">
+    <!--<button id="btnTrykk">Trykk</button>-->
+
+    <script>
+
+        let farge = document.getElementById("farge");
+        //var btnTrykk = document.getElementById("btnTrykk");
+
+        farge.onchange = function(){
+            document.body.style.backgroundColor = farge.value;
+
+        }
+
+    </script>
+
+
+</body>
+</html>

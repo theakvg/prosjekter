@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adjektiv historie</title>
+</head>
+<body>
+
+    <input id="adjektiv1" type="text" placeholder="Skriv inn adjektiv nr.1">
+    <input id="adjektiv2" type="text" placeholder="Skriv inn adjektiv nr.2">
+    <input id="adjektiv3" type="text" placeholder="Skriv inn adjektiv nr.3">
+    <input id="adjektiv4" type="text" placeholder="Skriv inn adjektiv nr.4">
+    <input id="adjektiv5" type="text" placeholder="Skriv inn adjektiv nr.5">
+    <input id="adjektiv6" type="text" placeholder="Skriv inn adjektiv nr.6">
+    <input id="adjektiv7" type="text" placeholder="Skriv inn adjektiv nr.7">
+    <input id="adjektiv8" type="text" placeholder="Skriv inn adjektiv nr.8">
+    <input id="adjektiv9" type="text" placeholder="Skriv inn adjektiv nr.9">
+    <input id="adjektiv10" type="text" placeholder="Skriv inn adjektiv nr.10">
+
+    <button id="btnHistorie">Lag historie</button>
+
+
+
+    <script>
+
+        let adjektiv1 = document.getElementById("adjektiv1");
+        let adjektiv2 = document.getElementById("adjektiv2");
+        let adjektiv3 = document.getElementById("adjektiv3");
+        let adjektiv4 = document.getElementById("adjektiv4");
+        let adjektiv5 = document.getElementById("adjektiv5");
+        let adjektiv6 = document.getElementById("adjektiv6");
+        let adjektiv7 = document.getElementById("adjektiv7");
+        let adjektiv8 = document.getElementById("adjektiv8");
+        let adjektiv9 = document.getElementById("adjektiv9");
+        let adjektiv10 = document.getElementById("adjektiv10")
+        let btnHistorie = document.getElementById("btnHistorie")
+
+        btnHistorie.onclick = function() {
+            document.write(`
+        En ${adjektiv1.value} vinterdag skulle den ${adjektiv2.value} IT-klassen på overnettingstur.
+        Alle de ${adjektiv3.value} elevene hadde med seg langrennski, soveposer og en ${adjektiv4.value} sekk med
+        mat og varmt tøy. alle gledet seg til denne ${adjektiv5.value} turen. Kristine hadde på seg
+        en ${adjektiv6.value} ny lue, og den ${adjektiv7.value} Tormod hadde på seg en ${adjektiv8.value} jakke. Den
+        ${adjektiv9.value} Anne og ${adjektiv10.value} Sabrina hadde nye langrennsski som de hadde fått til jul. `)
+        };
+
+
+
+    </script>
+
+</body>
+</html>

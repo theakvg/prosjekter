@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <img src="2018-07/6.JPG" alt="" id="img">
+    <button id="btnBak"><</button>
+    <button id="btnFor">></button>
+    
+
+    <script>
+
+        /*let img = document.querySelector("#img");
+        let btnBak = document.querySelector("#btnBak");
+        let btnFor = document.querySelector("#btnFor");
+
+        let matvarer = ["ost", "paprika", "brød", "kaviar"];
+
+        matvarer.unshift("brus");
+        matvarer.pop();
+        matvarer.splice(3,1,"knekkebrød");
+        
+
+        let trær = ["lønn", "hassel", "øbjørk", "eik", "blodlønn", "furu", "gran"];
+
+        trær.splice(3,1);
+        trær.splice(2,1,"hengebjørk");
+        trær.splice(4,2,"fjellbjørk", "dvergbjørk");
+        trær.push();
+        trær.sort();*/
+        
+        let feriebilder = ["6.JPG", "IMG_9516.JPG", "IMG_9521.JPG", "IMG_9532.JPG","ihuh.png", "pjoo.png"];
+
+        function fbilder () {
+            for (let i = 0; i < feriebilder.length; i++) {
+                if (i === feriebilder.length) {
+                    i = 0;
+                };
+                img.src = "2018-07/" + feriebilder[i];
+            }
+        }
+        function bbilder () {
+            for (let a = 0; a < feriebilder.length; a = a-1) {
+                if (a === 0) {
+                    a = feriebilder.length;
+                };
+                img.src = "2018-07/" + feriebilder[a];
+            }
+        }
+
+        btnBak.onclick = bbilder();
+        btnFor.onclick = fbilder(); 
+
+
+
+
+
+
+        
+
+
+
+
+    </script>
+
+</body>
+</html>

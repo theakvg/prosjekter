@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    
+    #popup {
+        display: none;
+        width: 200px;
+        height: 200px;
+        background-color: peachpuff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); 
+        /* border-style: solid;
+        border-width: 1px;
+        border-color: black;*/
+        border: solid 1px black;
+        box-shadow: 10px 10px;
+    }
+    
+    </style>
+</head>
+<body>
+
+    <h1>Min nettside</h1>
+    <p>tekst</p>
+    <button id="minKnapp">TRYKK HER</button>
+
+        <div id="popup">
+            
+            <p>Tekst som skal vises</p>
+
+        </div>
+
+
+    <script>
+    
+        const popup = document.getElementById("popup");
+        const knapp = document.getElementById("minKnapp");
+
+
+       
+
+        window.onclick = function (event) {
+            if (event.target === popup || event.target === knapp || event.target === popup.children) {
+                popup.style.display = "block";
+            } else {
+                popup.style.display = "none";
+            }
+            console.log(event.target);
+        };
+
+
+
+
+    
+    
+    
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Billettpris</title>
+</head>
+<body>
+
+    <script>
+
+        var verdi = prompt("Hvilken billett ønsker du?");
+
+        switch(verdi) {
+            case ("ungdom"):
+                document.write("Billetten koster: 25 kr");
+                break;
+            case "barn":
+            case "pensjonist":
+                document.write("Billetten koster: 20 kr");
+                break;
+            case "voksen":
+                document.write("Billetten koster: 30 kr");
+                break;
+            deafult:
+                document.write("Billettene du kan velge mellom er: barn, ungdom, voksen og pensjonist");
+                break;
+        }
+
+    </script>
+
+</body>
+</html>

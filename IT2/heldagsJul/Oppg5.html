@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="Oppg5css.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tWS">
+        <div>
+            <img src="bilder/granstua.jpg" id="imgHytte">
+            <div id="btnLR">
+                <button id="btnLeft"> < </button>
+                <button id="btnRight"> > </button>
+            </div>
+        </div>
+        <div id="info">
+            <h4 id="infoH4"></h4>
+            <p id="infoSengPlass"></p>
+            <p id="infoStandard"></p>
+        </div>
+    </div>
+
+    <script>
+
+        let imgGranbo = document.getElementById("imgGranbo");
+        let imgGranstua = document.getElementById("imgGranstua");
+        let imgHytte = document.getElementById("imgHytte");
+        let infoH4 = document.getElementById("infoH4");
+        let infoSengPlass = document.getElementById("infoSengPlass");
+        let infoStandard = document.getElementById("infoStandard");
+        let btnRight = document.getElementById("btnRight");
+        let btnLeft = document.getElementById("btnLeft");
+
+
+        
+        let infoHytte = [["bilder/granstua.jpg", "Granstua", "Sengeplasser: 4", "Standard: Høg"], ["bilder/granbo.jpg", "Granbo", "Sengeplasser: 6", " Standard: Middels"]];
+        let Granstua = ["bilder/granstua.jpg", "bilder/granstua01.jpg", "bilder/granstua02.jpg", "bilder/granstua03.jpg"];
+        let Granbo = ["bilder/granbo.jpg", "bilder/granbo01.jpg", "bilder/granbo02.jpg", "bilder/granbo03.jpg"];
+        let r = 0;
+        let k = 0;
+        let s = 0;
+        
+        imgHytte.onclick = function () {
+            console.log(r);
+            if (infoHytte[r][1] == "Granstua") { // Kjører når "granstuen " == "granstuen", r kommer fra den andre funksjonen, bruker den samme r'en sånn at det vlir det samme bilde som klikkes på, som er riktig. 
+                information (r);
+                btnRight.onclick = function () {   // Når btnRight klikkes, går den til neste bilde i Granstua arrayen 
+                    if (s < Granstua.length - 1) {
+                        s = s + 1;
+                        imgHytte.src = Granstua[s];
+                        console.log("ok");
+                    } else {
+                        s = 0;
+                        imgHytte.src = Granstua[s];
+                        console.log("not ok");
+                    };
+                };
+                btnLeft.onclick = function () {   //Når btnLeft klikkes, går den til forrige bilde i Granstua Arrayen
+                    if (s > 0) {
+                        s = s - 1;
+                        imgHytte.src = Granstua[s];
+                    } else {
+                        s = Granstua.length - 1;
+                        imgHytte.src = Granstua[s];
+                    };
+                };
+            };
+            if (infoHytte[r][1] == "Granbo") { // Samme greia her, med tanke på r
+                information (r);
+                btnRight.onclick = function () {
+                    if (s < Granbo.length - 1) {
+                        s = s + 1;
+                        imgHytte.src = Granbo[s];
+                        console.log("ok");
+                    } else {
+                        s = 0;
+                        imgHytte.src = Granbo[s];
+                        console.log("not ok");
+                    };
+                };
+                btnLeft.onclick = function () {
+                    if (s > 0) {
+                        s = s - 1;
+                        imgHytte.src = Granbo[s];
+                    } else {
+                        s = Granbo.length - 1;
+                        imgHytte.src = Granbo[s];
+                    };
+                };
+            };   
+        };
+        
+
+        btnRight.onclick = function () {  // Når knappen trykkes på byttes bilde til neste
+            if (r < infoHytte.length - 1) {
+                r = r + 1;
+                imgHytte.src = infoHytte[r][0];
+            } else {
+                r = 0;
+                imgHytte.src = infoHytte[r][0];
+            }
+        };
+        btnLeft.onclick = function () { // Når knappen trykkes på byttes bilde til neste
+            if (r > 0) {
+                r = r - 1;
+                imgHytte.src = infoHytte[r][0];
+            } else {
+                r = infoHytte.length - 1;
+                imgHytte.src = infoHytte[r][0];
+            }
+        };
+        
+
+
+
+        function information (r) {  // funksjonen som gir hvilken info som skal på hvilken plass fra infoHytte - arrayen, r kommer også fra ovenfor
+            infoH4.innerHTML = infoHytte[r][1];
+            infoSengPlass.innerHTML = infoHytte[r][2];
+            infoStandard.innerHTML = infoHytte[r][3];
+            console.log("ok");
+        };
+
+    
+    
+    </script>
+    
+</body>
+</html>

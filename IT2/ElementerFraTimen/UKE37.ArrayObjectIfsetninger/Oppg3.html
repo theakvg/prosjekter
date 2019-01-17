@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgave 3</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <button id="btnShow">Klikk her for overraskelse</button>
+    <img id="bilde" src=""></img>
+
+    <script>
+
+        let btnShow = document.getElementById("btnShow");
+        let bilde = document.getElementById("bilde");
+
+        var bArray = ["Bilder/60381966.jpg","Bilder/jpeg.jpg","Bilder/Trondheim-022016-99-0002_2200-1200x800.jpg", "Bilder/x5cgi0ode66q6vuxezqmehmexwer6bt-xlarge.jpg", ];
+
+
+        btnShow.onclick = function (){
+            bilde.src = bArray[Math.floor(Math.random()*4)];
+
+        };
+
+
+    </script>
+
+
+    </body>
+</html>

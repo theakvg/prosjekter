@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>For-loops og canvas</title>
+    <style>
+        canvas {
+            border-style: solid;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas" height="600" width="600"></canvas>
+
+
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+
+    for (var i = 1; i <= 5000; i++) {
+        var x = Math.random();
+        var y = Math.random();
+        ctx.beginPath();
+        ctx.fillStyle = "red";
+        ctx.arc( x*600, y*600, 20, 0, Math.PI*2);
+        ctx.fill();
+    }
+
+
+
+</script>
+
+
+</body>
+</html>

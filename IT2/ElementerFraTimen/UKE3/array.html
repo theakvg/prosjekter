@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Array</title>
+</head>
+<body>
+    
+    <ul id="filmliste">
+    </ul>
+
+
+    <script>
+
+        let filmliste = document.getElementById("filmliste");
+
+        let filmer = ["Ben Hur","Shawshank Redemption","Inglorius Bastards"];
+
+        console.log(filmer[2]);
+
+        /*filmer[1]="King Kong";*/
+
+        for(let film of filmer){
+            filmliste.innerHTML += "<li>" + film + "</li>";
+        }
+
+        /*    
+        for (let i = 0; i < filmer.length; i++) {
+            console.log(filmer[i]);
+        }*/
+
+        //Metoder til Array s.201
+
+        filmer.push("Django Unchained"); //legger til et element sist i arrayen
+        filmer.unshift("Oslo 11 august"); //legger til et element først i arrayen
+        filmer.pop(); //tar bort det siste elementet i arrayen
+        filmer.shift(); //tar bort det første elementet i arrayen 
+        filmer.splice(1,2); //fjerner elementet med index 1, og fjerner to elementer
+        filmer.splice(1,1,"The shape of water"); //bytter ut elementet med index 1 med "the shape of water"
+    
+
+    
+    
+    
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        #theGame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        h1 {
+            text-align: center
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="theGame">
+        <h1>HANGMAAN</h1>
+            <div id="inpin">
+            <label for="inpOrd">Hva skal ordet være?</label>
+            <input type="text" id="inpOrd">
+            <button id="bestem">Bestem</button>
+        </div>
+        <div id="pointCount">
+            
+        </div>
+        <div id="word">
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+        </div>
+        
+    </div>
+
+    <script>
+        
+        let bokstav = document.querySelectorAll(".bokstav");
+        let bestem = document.getElementById("bestem");
+        let inpOrd = document.getElementById("inpOrd");
+        let word = document.getElementById("word");
+        let pointCount = document.getElementById("pointCount");
+
+        let gjettWord = [];
+        let komOrd = [];    
+        let arrayBoks = [["Q", "KeyQ"],["W", "KeyW"],["E", "KeyE"],["R", "KeyR"],["T", "KeyT"], ["Y", "KeyY"], ["I", "KeyI"], ["O", "KeyO"], ["P", "KeyP"], ["A", "KeyA"], ["S", "KeyS"], ["D", "KeyD"], ["U", "KeyU"], ["F", "KeyF"],["G", "KeyG"],["H", "KeyH"],["J", "KeyJ"],["K", "KeyK"], ["L", "KeyL"], ["Z", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyN"], ["M", "KeyM"]];        
+        
+        for (let b = 0; b < arrayBoks.length; b++) {
+            //bokstav[b].innerHTML = arrayBoks[b];
+        };
+        let r = 0;
+        
+
+        bestem.onclick = function (event) {
+            for (let l = 0; l < inpOrd.value.length; l++) {
+                gjettWord.push(inpOrd.value[l]);
+                komOrd.push("_");
+                console.log(l);
+                bokstav[l].innerHTML = komOrd[l];
+            };
+            let point = 0;
+            inpOrd.value = "";
+            window.onkeyup = function (event) {
+                for (let i = 0; i < arrayBoks.length; i++) {
+                    if (event.code === arrayBoks[i][1]) {                        
+                        for (let z = 0; z < gjettWord.length; z++) {                            
+                            if (arrayBoks[i][0] === gjettWord[z]) {
+                                komOrd[z] = gjettWord[z];
+                                bokstav[z].innerHTML = komOrd[z];                                
+                            } 
+                        };
+                    };             
+                };
+            };
+        };
+        
+
+
+
+
+    </script>
+
+</body>
+</html>

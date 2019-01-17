@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgaver på side 72</title>
+
+    <style>
+        canvas {
+            border: solid;
+        }
+    </style>
+</head>
+<body>
+
+
+    <canvas id="canvas" height="500" width="1000"></canvas>
+
+
+
+
+    <script>
+
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        ctx.strokeStyle = "red";
+        ctx.fillStyle = "green";
+        ctx.fillRect(30,20,50,50);
+        ctx.strokeRect(29,19,52,52);
+
+        ctx.moveTo(445,445);
+        ctx.lineTo(435,470);
+        ctx.lineTo(455,470);
+        ctx.lineTo(445,445);
+        ctx.fill();
+
+        ctx.moveTo(50,450);
+        ctx.lineTo(450,450);
+        ctx.lineTo(450,200);
+        ctx.lineTo(250,50);
+        ctx.lineTo(50,200);
+        ctx.lineTo(50,450);
+        ctx.stroke();
+
+        ctx.fillStyle = "darkBlue";
+        ctx.fillRect(500,50,200,150);
+        ctx.fillStyle = "white";
+        ctx.fillRect(500,50,65,65);
+        ctx.fillRect(585,50,115,65);
+        ctx.fillRect(500,135,65,65);
+        ctx.fillRect(585,135,115,65);
+        ctx.fillStyle = "red";
+        ctx.fillRect(500,50,55,55);
+        ctx.fillRect(595,50,105,55);
+        ctx.fillRect(500,145,55,55);
+        ctx.fillRect(595,145,105,55);
+
+
+
+    </script>
+
+</body>
+</html>

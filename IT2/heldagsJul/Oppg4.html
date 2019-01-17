@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <button id="btnKast">Kast terning</button>
+    <div>
+        
+        <img src="" id="tern1">
+        <img src="" id="tern2">
+        
+        <div id="divStat"></div>
+        
+    </div>
+
+    <script>
+        
+        let btnKast = document.getElementById("btnKast");
+        let tern1 = document.getElementById("tern1");
+        let tern2 = document.getElementById("tern2");
+        let ternSum = document.getElementById("ternSum");
+        let divStat = document.getElementById("divStat");
+
+        let tEn = 0;
+        let tTo = 0;
+        let sum = 0;
+
+        let terning = [[1, "oppgave4c/dice1.png"], [2, "oppgave4c/dice2.png"], [3, "oppgave4c/dice3.png"], [4, "oppgave4c/dice4.png"], [5, "oppgave4c/dice5.png"], [6, "oppgave4c/dice6.png"]]
+
+        btnKast.onclick = function () {
+            divStat.innerHTML = " ";
+            tEn = Math.floor(Math.random()*6 + 1);
+            tTo = Math.floor(Math.random()*6 + 1);
+            sum = tEn + tTo;
+            for (let y = 0; y < terning.length; y++) {
+                if (y === tEn) {
+                    tern1.src = terning[y-1][1];
+                    console.log("tEn = " + tEn);
+                };
+            };
+            for (let z = 0; z < terning.length; z++) {
+                if (z === tTo) {
+                    tern2.src = terning[z-1][1];
+                    console.log("tTo = " + tTo);
+                };
+            };
+            
+            if (tEn === 1 && tTo === 1) {
+                divStat.innerHTML = "Beklager, du fikk bare 2";
+            } else if (tEn === 6 && tTo === 6) {
+                divStat.innerHTML = "Gratulerer, du fikk 12!"
+            } else {
+                divStat.innerHTML = "Du fikk: "+ sum;
+            };
+
+        };
+
+    
+    
+    
+    </script>
+    
+</body>
+</html>

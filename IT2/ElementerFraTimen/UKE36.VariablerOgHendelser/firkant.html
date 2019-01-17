@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FIRKANT</title>
+    <style>
+
+        #firkant {
+            background-color: black;
+            width: 200px;
+            height: 200px;
+            transition: ;
+        }
+
+    </style>
+</head>
+<body>
+
+    <input id="inpBredde" min="0" max="100" type="range">
+    <input id="inpHoyde" min="0" max="1024" type="range">
+    <input id="inpFarge" type="color">
+
+    <div id="firkant"></div>
+
+    <script>
+
+        let inpBredde = document.getElementById("inpBredde");
+        let inpHoyde = document.getElementById("inpHoyde");
+        let inpFarge = document.getElementById("inpFarge");
+        let firkant = document.getElementById("firkant");
+
+        inpBredde.onmousemove = function() {
+            firkant.style.width = inpBredde.value + "%";
+        };
+
+        inpFarge.onchange = function() {
+            firkant.style.backgroundColor = inpFarge.value;
+        };
+
+        inpHoyde.onmousemove = function() {
+            firkant.style.height = inpHoyde.value + "px";
+        }
+
+
+
+    </script>
+
+</body>
+</html>

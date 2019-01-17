@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bredde på firkant</title>
+
+    <style>
+
+        #minFirkant {
+            background-color: bisque;
+            width: 200px;
+            height: 200px;
+            transition: 1s;
+        }
+
+    </style>
+</head>
+<body>
+
+    <input id="inpBredde" min="0" max="100" type="range">
+    <div id="minFirkant"></div>
+
+    <script>
+
+        let inpBredde = document.getElementById("inpBredde");
+        let minFirkant = document.getElementById("minFirkant");
+
+        inpBredde.onmousemove = function(){
+            minFirkant.style.width = inpBredde.value + "%";
+        }
+
+    </script>
+
+</body>
+</html>

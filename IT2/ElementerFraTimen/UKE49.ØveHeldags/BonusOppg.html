@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="theGame">
+        <h1>HANGMAAN</h1>
+        <label for="inpOrd">Hva skal ordet være?</label>
+        <input type="text" id="inpOrd">
+        <button id="bestem">Bestem</button>
+        <div id="word"></div>
+
+        <div id="alfabetet">
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+            <div class="bokstav"></div>
+        </div>
+    </div>
+
+    <script>
+        
+        let bokstav = document.querySelectorAll(".bokstav");
+        let bestem = document.getElementById("bestem");
+        let inpOrd = document.getElementById("inpOrd");
+
+        let gjettWord = [];
+        let arrayBoks = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Æ", "Ø", "Å"]
+        
+        for (let b = 0; b < arrayBoks.length; b++) {
+            bokstav[b].innerHTML = arrayBoks[b];
+        }
+
+        bestem.onclick = function () {
+            console.log(inpOrd.value);
+        }
+
+
+
+
+    </script>
+
+</body>
+</html>

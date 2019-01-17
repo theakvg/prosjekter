@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator</title>
+</head>
+<body>
+
+    <input id="tall1" type="number" placeholder="Tall 1">
+    <input id="tall2" type="number" placeholder="Tall 2">
+    <input id="ra" type="text" placeholder="Regneart">
+    <button id="btnRegn">REGN UT</button>
+    <p id="svar"></p>
+
+    <script>
+
+        let tall1 = document.getElementById("tall1");
+        let tall2 = document.getElementById("tall2");
+        let ra = document.getElementById("ra");
+        let btnRegn = document.getElementById("btnRegn");
+        let svar = document.getElementById("svar");
+        let t1, t2, res;
+        res1 = tall1.value;
+        btnRegn.onclick = function () {
+            console.log("ok");
+            t1 = parseFloat(tall1.value);
+            t2 = parseFloat(tall2.value);
+            switch (ra.value) {
+                case '+':
+                    res = t1 + t2 ;
+                    break;
+                case "-":
+                    res = t1 - t2;
+                    break;
+
+                default:
+                    console.log("def");
+                    break;
+
+            }
+            svar.innerText = res;
+        }
+
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgave 5</title>
+</head>
+<body>
+<p>5*3 = </p>
+    <input id="spm1" type="text">
+    <button id="svar1">Svar</button>
+    <img id="ans1" src=""></img>
+<p>5*5 = </p>
+    <input id="spm2" type="text">
+    <button id="svar2">Svar</button>
+    <div id="ans2"></div>
+<p>5^3 =</p>
+    <input id="spm3" type="text">
+    <button id="svar3">Svar</button>
+    <div id="ans3"></div>
+
+    <script>
+        let smp1 = document.getElementById("spm1");
+        let smp2 = document.getElementById("spm2");
+        let smp3 = document.getElementById("spm3");
+        let ans1 = document.getElementById("ans1");
+        let ans2 = document.getElementById("ans2");
+        let ans3 = document.getElementById("ans3");
+        let svar1 = document.getElementById("svar1");
+        let svar2 = document.getElementById("svar2");
+        let svar3 = document.getElementById("svar3");
+
+        svar1.onclick = function () {
+            if (smp1.value == 15) {
+                ans1.src = "Bilder/60381966.jpg";
+            } else {
+                ans1.src = "Bilder/jpeg.jpg";
+            }
+        };
+        svar2.onclick = function () {
+            if (smp2.value == 25) {
+                ans2.innerText = "RIKTIG!";
+            } else {
+                ans1.innerText = "FEIL!";
+            }
+        };
+        svar3.onclick = function () {
+            if (smp3.value == 125) {
+                ans3.innerText = "RIKTIG!";
+            } else {
+                ans1.innerText = "FEIL!";
+            }
+        };
+
+        </script>
+
+</body>
+</html>

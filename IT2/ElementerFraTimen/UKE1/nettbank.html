@@ -1,0 +1,175 @@
+<html>
+    <head>
+            <link rel="stylesheet" href="nettbank.css">
+    </head>
+    <body>
+        
+
+        <div id="divHeader">
+            <h1>Nettbank</h1>
+        </div>
+        <div id="divKontoer">
+            <h3>Kontoene dine:</h3>
+            <div id="konto1">
+                <p id="K2">Sparekonto</p>
+                <p id="K2verdi">0</p>
+            </div>
+            <div id="konto2">
+                <p id="K1">Brukskonto</p>
+                <p id="K1verdi">0</p>
+            </div>
+        </div>
+        <div id="divValg">
+            <div id="divBtnInnskudd">
+                <button id="btnInnskudd" class="btnMarg">Innskudd</button>
+                <div id="divInnskudd">
+                    <select id="selKontoI">
+                        <option id="K1">Brukskonto</option>
+                        <option id="K2">Sparekonto</option>
+                    </select>
+                    <input type="number" id="inpInnskudd" placeholder="Innskudd">
+                    <button id="btnBekInnskudd">Bekreft innskudd</button> 
+                </div>         
+            </div>
+            <div id="divBtnUttak">
+                <button id="btnUttak" class="btnMarg">Uttak</button>
+                <div id="divUttak">
+                    <select id="selKontoU">
+                        <option id="K1">Brukskonto</option>
+                        <option id="K2">Sparekonto</option>
+                    </select>
+                    <input type="number" id="inpUttak" placeholder="Uttak">
+                    <button id="btnBekUttak">Bekreft Uttak</button>
+                </div>
+            </div> 
+            <div id="divBtnKoUt">
+                <button id="btnKoUt" class="btnMarg">Kontoutskrift</button>
+                <div id="divKoUt">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="th">Type Handling: </th>
+                                <th class="th">Kroner: </th>
+                                <th class="th">Konto: </th>
+                            </tr>
+                        </thead>
+                        <tbody id="trKoUt">
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>         
+        </div>
+        
+        <script>
+            const btnBekInnskudd = document.getElementById("btnBekInnskudd");
+            const inpInnskudd = document.getElementById("inpInnskudd");
+            const divKoUt = document.getElementById("divKoUt");
+            var K1verdi = document.getElementById("K1verdi");
+            const trKoUt = document.getElementById("trKoUt")
+            const divBtnUttak = document.getElementById("divBtnUttak");
+            const inpUttak = document.getElementById("inpUttak");
+            const btnBekUttak = document.getElementById("btnBekUttak");
+            const selKontoI = document.getElementById("selKontoI");
+            const selKontoU = document.getElementById("selKontoU");
+            const divBtnKoUt = document.getElementById("divBtnKoUt");
+            const divInnskudd = document.getElementById("divInnskudd");
+            const btnInnskudd = document.getElementById("btnInnskudd");
+            const divUttak = document.getElementById("divUttak");
+            const btnUttak = document.getElementById("btnUttak");
+
+            var arrayKoUt = [];
+
+            divBtnKoUt.onclick = function () {
+                if (divKoUt.style.opacity === "0") {
+                    divKoUt.style.opacity = "1";
+                } else {
+                    divKoUt.style.opacity = "0";
+                }
+            };
+
+            btnInnskudd.onclick = function () {
+                if (divInnskudd.style.opacity === "0") {
+                    divInnskudd.style.opacity = "1";
+                } else {
+                    divInnskudd.style.opacity = "0";
+                }
+            };
+            btnUttak.onclick = function () {
+                if (divUttak.style.opacity === "0") {
+                    divUttak.style.opacity = "1";
+                } else {
+                    divUttak.style.opacity = "0";
+                }
+            };            
+
+            btnBekInnskudd.onclick = function () {
+                ifInnskudd ();
+            };
+
+            btnBekUttak.onclick = function () {
+                ifUttak ();
+            };
+
+            function ifInnskudd () {
+                if (selKontoI.selectedIndex === 0) {
+                    var b = K1verdi;
+                    funcInnskudd(b);
+                } else if (selKontoI.selectedIndex === 1) {
+                    var b = K2verdi;
+                    funcInnskudd(b);
+                }
+            };
+
+            function ifUttak () {
+                if (selKontoU.selectedIndex === 0) {
+                    var c = K1verdi;
+                    funcUttak(c);
+                } else if (selKontoU.selectedIndex === 1) {
+                    var c = K2verdi;
+                    funcUttak(c);
+                };
+            };
+
+            
+
+
+            function funcInnskudd (b) {
+                var g = parseInt(b.innerHTML); // Gjør at K1verdi blir til ett nummer slik at du kan summere det og K1verdi
+                var h = parseInt(inpInnskudd.value); //Gjør at inpInnskudd blir til ett nummer slik at du kan summere det og K1verdi
+                b.innerHTML = g + h;
+                let j = 0;
+                if (b == K1verdi) {
+                    j = "Brukskonto";
+                } else if (b ==K2verdi) {
+                    j = "Sparekonto";
+                };
+                trKoUt.innerHTML = trKoUt.innerHTML + "<td>Inn</td>" + "<td>" + h + "</td>" + "<td>" + j + "<td>";
+                };
+            
+            function funcUttak (c) {
+                var g = parseInt(c.innerHTML); // Gjør at K1verdi blir til ett nummer slik at du kan summere det og K1verdi
+                var h = parseInt(inpUttak.value); //Gjør at inpUttak  blir til ett nummer slik at du kan summere det og K1verdi
+                c.innerHTML = g - h;
+                let j = 0;
+                if (c == K1verdi) {
+                    j = "Brukskonto";
+                } else if (c == K2verdi) {
+                    j = "Sparekonto"
+                };
+                let transaksjon = {
+                    type: "Ut",
+                    handling: h,
+                    konto: j
+                }
+                arrayKoUt.unshift(transaksjon);
+                trKoUt.innerHTML = "<td>" + arrayKoUt(0,0) + "</td>" + "<td>" + "-" + arrayKoUt(0,handling) + "</td>" + "<td>" + arrayKoUt(0,konto) + "</td>" + trKoUt.innerHTML;
+            };
+        
+        
+        
+        </script>
+    </body>
+</html>
