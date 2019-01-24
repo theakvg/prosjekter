@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+
+    
+    </style>
+
+</head>
+<body>
+
+    <h1>Trenger du hjelp?</h1>
+
+    <input type="text" id="navn" placeholder="Hvem er du?">
+    <input type="text" id="problem" placeholder="Hva er problemet ditt?">
+    <button id="btnBek">Send inn</button>
+
+    <div>
+        <table id="dynamicTable">
+            
+        </table>
+    </div>
+    c
+
+    <script>
+        let navn = document.querySelector("#navn");
+        let problem = document.querySelector("#problem");
+        let btnBek = document.querySelector("#btnBek");
+        let celle = document.querySelector("#celle");
+        let dynamicTable = document.getElementById("dynamicTable");
+
+
+
+        let th1 = document.createElement("th");
+        let th2 = document.createElement("th");
+        let thead = document.createElement("thead");
+
+        let problemer = new Map();
+
+        btnBek.onclick = function () {
+            problemer.set(navn.value,problem.value);  
+            listen();
+        };
+
+        let i = 0;
+
+        function listen() {
+
+            for (let [navnet,problemet] of problemer) {
+                let td1 = document.createElement("td");
+                let td2 = document.createElement("td");
+                td1.style.margin = 5 + "px";
+                td2.style.margin = 5 + "px";
+                let tr = document.createElement("tr");
+                let check = document.createElement("input");
+                check.type = "checkbox";
+
+                i++;
+                tr.id = "trId" + i;
+                check.id = "checkId" + i;
+                check.class = "sjekk";
+
+                dynamicTable.appendChild(tr);
+                td1.appendChild(document.createTextNode(navnet));
+                td2.appendChild(document.createTextNode(problemet));
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(check);
+            }
+        }
+
+        let k = 0;
+
+        sjekk.onclick = function () {
+            for (let a = 0; a < problemer.length; a++) {
+                if ((checkId + a).checked === true ) {
+
+                }
+            }
+        };
+
+        th1.appendChild(document.createTextNode("Navn"));
+        th2.appendChild(document.createTextNode("Problem"));           
+        dynamicTable.appendChild(thead);
+        thead.appendChild(th1);
+        thead.appendChild(th2);
+
+        
+
+        
+
+
+
+    
+    
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+        body {
+            background-color: black;
+            height: 100%;
+        }
+        .stjerne {
+            position: absolute;
+            background-color: yellow;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%      {transform:scale(1)}
+            50%     {transform:scale(2.2)}
+            100%    {transform:scale(1)}  
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+
+    <script>
+
+        setInterval(lagStjerne,5);
+        
+        function lagStjerne() {
+            let stjerne = document.createElement("div");
+            stjerne.className = "stjerne";
+            stjerne.style.left = Math.random() * innerWidth + "px";
+            stjerne.style.top = Math.random() * innerHeight + "px";
+            stjerne.style.width = Math.random() * 3 + "px";
+            stjerne.style.height = stjerne.style.width;
+            document.body.appendChild(stjerne);
+        }
+    
+    
+    </script>
+    
+</body>
+</html>
