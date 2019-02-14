@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+
+        #fir1 {
+            position: absolute;
+            left: 50px;
+            top: 50px;
+            opacity: 1;
+            height: 50px;
+            width: 50px;
+            background-color: blue;
+        }
+        #fir2 {
+            position: absolute;
+            left: 200px;
+            top: 50px;
+            opacity: 1;
+            height: 50px;
+            width: 50px;
+            background-color: blue;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div id="fir1"></div>
+    <div id="fir2"></div>
+
+
+
+    <script>
+
+        let fir1 = document.querySelector("#fir1");
+        let fir2 = document.querySelector("#fir2");
+
+        let firAni = [
+            {
+                top: "50px",
+                opacity: "1"
+            }, 
+            {
+                top: "200px",
+                opacity: "0"
+            },
+            {
+                top: "50px",
+                opacity: "1"
+            }
+        ];
+        let firEgen = {
+            duration: 2000,
+            direction: "alternate", 
+            iterations: Infinity
+        };
+
+        fir1.animate(firAni, firEgen);
+        fir2.animate(firAni, firEgen);
+
+
+    
+    
+    
+    </script>
+
+</body>
+</html>

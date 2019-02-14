@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        
+        body {
+            background-color: lightskyblue;
+        }
+        .snow {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+        }
+    
+    
+    
+    </style>
+
+</head>
+<body>
+    
+    <script>
+
+        setInterval(snowfall, 50);
+        let i = 0;
+        
+        function snowfall () {
+            let snow = document.createElement("div");
+            snow.className = "snow";
+            snow.style.left = Math.random() * innerWidth + "px";
+            snow.style.height = Math.random() * 15 + "px";
+            let v = snow.style.height;
+            snow.style.width = v;
+            //console.log(v);
+            document.body.appendChild(snow);
+            let id = setInterval(fall, 2);
+            let pos = 0; 
+            function fall () {
+                if (pos == 700) {
+                    clearInterval(id);
+
+                } else {
+                    pos++; 
+                    snow.style.top = pos + "px";
+                } 
+            }
+            i++;
+            console.log(i);
+                                  
+        }
+    
+    </script>
+
+</body>
+</html>

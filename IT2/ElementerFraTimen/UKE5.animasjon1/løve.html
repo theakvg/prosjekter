@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        #container {
+            position: relative;
+           
+            color: white;
+        }
+        #bilde {
+            width: 1000px;
+            position: absolute;
+            opacity: 1;
+        }
+        #bilde:hover {
+            opacity: 0;
+        }
+        #box > h1 {
+            font-size: 60px;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+        }
+        #box > h4 {
+            font-size: 35px;
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font: italic;
+            
+        }
+        #strek {
+            position: absolute;
+            width: 800px;
+            height: 3px;
+            background-color: white;
+            margin-left: 100px;
+            margin-top: 35%
+        }
+        #box {
+            background-color: darkgreen;
+            text-align: center;
+            width: 1000px;
+            position: absolute;
+            height: 667px;
+            opacity: 0;
+            transition: all 1s ease-in; 
+            
+        }
+        #box:hover {
+            opacity: 1;
+        }
+        
+        
+        
+        
+
+
+    </style>
+
+</head>
+<body>
+
+    <div id="container">
+    
+        <div id="løve">
+            <img src="5217080_2298520.jpg" id="bilde" alt="">
+        </div>
+
+        <div id="box">
+            <h1>Løven</h1>
+            <div id="strek"></div>
+            <h4>Løven er et sosialt kattedyr sin tilhører slekten brølekatter (Panthera) </h4>
+        </div>
+    </div>
+
+     
+   
+
+
+</body>
+</html>

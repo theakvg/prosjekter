@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #bill {
+            height: 50px;
+            width: 50px;
+            background-color: blueviolet;
+            position: absolute;
+        }
+
+    
+    
+    </style>
+</head>
+<body>
+
+    <div id="bill"></div>
+
+
+    <script>
+
+        let bill = document.querySelector("#bill");
+
+        // bill.animate([{left:"10px", top:"10px"},{left:"300px", top:"300px"}],2000); // EN MÅTE Å ANIMERE PÅ
+
+        let animasjonsStil = [
+            {
+                left:"10px",
+                top: "10px"
+            },
+            {
+                left:"300px",
+                top:"300px"
+            }
+        ];
+
+        let animasjonsEgenskaper = {
+            duration: 1000,
+            easing: "ease-in-out",
+            direction: "alternate", 
+            iterations: Infinity,
+            fill: "forwards"
+        };
+
+        bill.animate(animasjonsStil, animasjonsEgenskaper );
+
+        
+        
+    
+    
+    
+    </script>
+</body>
+</html>

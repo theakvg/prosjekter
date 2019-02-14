@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        
+        body {
+            background-color: lightskyblue;
+        }
+        .snow {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: fall 9.8s infinite linear;
+        }
+        @keyframes fall {
+            from      {transform: translateY(0px) }
+            to    {transform: translateY(720px)}
+        }
+    
+    
+    
+    </style>
+
+</head>
+<body>
+    
+    <script>
+
+        setInterval(snowfall, 7);
+        
+        function snowfall () {
+            let snow = document.createElement("div");
+            snow.className = "snow";
+            snow.style.left = Math.random() * innerWidth + "px";
+            snow.style.top = 10 + "px";
+            snow.style.height = Math.random() * 6 + "px";
+            let v = snow.style.height;
+            snow.style.width = v;
+            console.log(v);
+            console.log(document.innerHeight);
+            document.body.appendChild(snow);
+            
+        }
+    
+    </script>
+
+</body>
+</html>

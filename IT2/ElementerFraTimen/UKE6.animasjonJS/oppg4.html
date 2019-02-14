@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kalkulator for ett eller annet</title>
+</head>
+<body>
+    
+    <label for="dPL">Drivstoffpris pr. Liter:</label>
+    <input type="text" id="dPL" placeholder="kroner">
+    <label for="kL">Kjørelengde:</label>
+    <input type="text" id="kL" placeholder="km">
+    <input type="radio" id="inpBy">
+    <label for="inpBy">Bykjøring</label>
+    <input type="radio" id="inpBland">
+    <label for="inpBland">Blandet kjøring</label>
+    <button id="btnRegn">Regn ut</button>
+    <div id="beregningen"></div>
+
+    <script>
+
+        let dPL = document.querySelector("#dPL");
+        let kL = document.querySelector("#kL");
+        let inpBy = document.querySelector("#inpBy");
+        let inpBland = document.querySelector("#inpBland");
+        let btnRegn = document.querySelector("#btnRegn");
+        let beregningen = document.querySelector("#beregningen");
+
+        let p = 0;
+        let c = 0;
+
+
+        
+
+        btnRegn.onclick = function () {
+            let total = Number(dPL.value)*Number(kL.value)*0.65;
+            if (inpBland.checked === true) {
+                c = total*0.05; 
+                beregningen.innerHTML = `Du sparer: ${c.toFixed(2)}`;
+            }
+            if (inpBy.checked === true) {
+                c = total*0.1;
+                beregningen.innerHTML = `Du sparer: ${c.toFixed(2)}`;
+            }
+            dPL.value = ""; 
+            kL.value = "";
+            inpBy.checked = false;
+            inpBland.checked = false;
+        };
+
+
+
+    
+    
+    
+    </script>
+
+    
+
+</body>
+</html>

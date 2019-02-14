@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+
+        #over {
+            width: 200px;
+            background-color: brown;
+            color: white;
+           position: absolute;
+        }
+        #planke {
+            width: 200px;
+            height: 10px;
+            background-color: brown;
+            transition: 10s;
+            margin: 10%;
+        }
+    
+    
+    </style>
+
+</head>
+<body>
+
+    <div id="box"></div>
+
+   
+    <!--<h1 id="over">HEI KOMPIS</h1>
+
+    <input type="number" id="inpDeg">
+
+    <div id="planke"></div>-->
+
+    <input type="number" placeholder="bredde" id="inpBredde">
+    <input type="number" placeholder="høyde" id="inpHoyde">
+    <input type="text" placeholder="farge" id="inpFarge">
+    <input type="number" placeholder="hjørne" id="inpHjorne">
+    <input type="number" placeholder="x-posisjon" id="inpX">
+    <input type="number" placeholder="y-posisjon" id="inpY">
+
+    <script>
+
+        /*let over = document.querySelector("#over");
+        let inpDeg = document.querySelector("#inpDeg");
+        let planke = document.querySelector("#planke");
+        let inpBredde = document.querySelector("#inpBredde");
+        let inpHoyde = document.querySelector("#inpHoyde");
+        let inpFarge = document.querySelector("#inpFarge");
+        let inpHjorne = document.querySelector("#inpHoyre");
+        let inpX = document.querySelector("#inpX");
+        let inpY = document.querySelector("#inpY");*/
+        let box = document.querySelector("#box");
+        let inp = document.querySelectorAll("input");
+
+       for (let input of inp) {
+           input.oninput = function() {
+               input[0].style.width = input[0].value;
+               input[1].style.width = input[1].value;
+               input[2].style.width = input[2].value;
+               input[3].style.width = input[3].value;
+               input[4].style.width = input[4].value;
+               input[5].style.width = input[5].value;
+           }
+       }
+        
+
+       /* OPPGAVE 2 
+       over.onmouseover = function () {
+            over.style.transform = "scale(3)";
+        }
+        over.onmouseleave = function() {
+            over.style.transform = "scale(1)";
+        }*/
+
+        /* OPPGAVE 3
+        let x = 0; 
+        let y = 0;
+
+        document.onclick = function (event) {
+            x = event.x; 
+            y = event.y;
+            console.log(x,y);
+            over.style.left = x + "px"; 
+            over.style.top = y + "px";
+        }*/
+
+        /* OPPGAVE 4
+        inpDeg.oninput = function () {
+            planke.style.transform = "rotate(" + inpDeg.value + "deg)";
+            console.log(planke.style.transform);
+        }
+        */
+
+
+
+    
+    
+    </script>
+
+</body>
+</html>

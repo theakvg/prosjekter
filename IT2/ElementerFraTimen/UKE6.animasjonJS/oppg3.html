@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #container {
+            width: 950px;
+            height: 400px; 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: black 1px solid;
+            float: left;
+        }
+        #del1 {
+            width: 475px;
+            height: 400px;
+        }
+        #del1 > img {
+            width: 475px; 
+            top: 25%;
+        }
+        #del2 {
+            width: 455px;
+            height: 380px;
+            background-color: aquamarine;
+            color: grey;
+            padding: 10px;
+            
+            
+        }
+        .del {
+            float: left;
+            text-align: center;
+        }
+    
+    
+    </style>
+</head>
+<body>
+
+    
+    <div id="container">
+        <!--
+        <div id="divBak">
+            <img src="kuga_bak.jpg" alt="">
+            <h3 class="h3Kuga">Et smart info-system som hjelper deg å kjøre mer effektivt</h3>
+            <p class="pKuga">Det innovative Ford Eco Mode-systemet vurderer kontinuerlig effekten av din kjøreadferd på drivstofforbruket. Systemet leser hastighet, giring, bremsing og forventningsnivåene, pluss forholdet mellom korte og lange turer. Smart programvare gir deg så råd om hvordan du kan forbedre drivstofføkonomien i forhold til din personlige kjørestil.</p>
+        </div>
+        <div id="divFront">
+            <img src="kuga_front.jpg" alt="">
+            <h3 class="h3Kuga">Dynamisk kurvekontroll for maksimum grep </h3>
+            <p class="pKuga">Dynamisk kurvekontroll reagerer på veioverflaten 100 ganger pr. sekund (det er 33 ganger raskere enn øyet blunker). Ved å bruke denne informasjonen balanseres kontinuerlig mengde effekt og bremsing som leveres til hvert av de to forhjulene. Dette maksimerer veigrepet og skjerper kjøreegenskapene, og hjelper deg på den måten gjennom svingene og over ujevnheter i veien. Dynamisk kurvekontroll er en spissteknologi som er standard på Kuga.</p>
+        </div>
+        <div id="divSide">
+            <img src="kuga_side.jpg" alt="">
+            <h3 class="h3Kuga">HELT NY FORD KUGA</h3>
+            <p class="pKuga">Kraftig, sporty og enda mer elegant både innvendig og utvendig. Vi er stolte over å kunne lansere den helt nye Ford Kuga, vår mest kompetente SUV hittil. Nye Ford Kuga har blitt større og byr på den absolutt nyeste teknologien.</p>
+        </div>
+        -->
+        <div id="del1" class="del">
+            <img id="divImg" src="" alt="">
+        </div>
+        <div id="del2" class="del">
+            <h2 id="divH3">HELLO</h3>
+            <p id="divP">hLLE</p>
+        </div>
+    </div>
+    
+
+    <script>
+
+        let divImg = document.querySelector("#divImg");
+        let divH3 = document.querySelector("#divH3");
+        let divP = document.querySelector("#divP");
+        let container = document.querySelector("#container");
+
+        let kugaImg = ["kuga_bak.jpg", "kuga_front.jpg", "kuga_side.jpg"];
+        let kugaH3 = ["HELT NY FORD KUGA", "Et smart info-system som hjelper deg å kjøre mer effektivt", "Dynamisk kurvekontroll for maksimum grep"]
+        let kugaP = ["Det innovative Ford Eco Mode-systemet vurderer kontinuerlig effekten av din kjøreadferd på drivstofforbruket. Systemet leser hastighet, giring, bremsing og forventningsnivåene, pluss forholdet mellom korte og lange turer. Smart programvare gir deg så råd om hvordan du kan forbedre drivstofføkonomien i forhold til din personlige kjørestil.", "Dynamisk kurvekontroll reagerer på veioverflaten 100 ganger pr. sekund (det er 33 ganger raskere enn øyet blunker). Ved å bruke denne informasjonen balanseres kontinuerlig mengde effekt og bremsing som leveres til hvert av de to forhjulene. Dette maksimerer veigrepet og skjerper kjøreegenskapene, og hjelper deg på den måten gjennom svingene og over ujevnheter i veien. Dynamisk kurvekontroll er en spissteknologi som er standard på Kuga.", "Kraftig, sporty og enda mer elegant både innvendig og utvendig. Vi er stolte over å kunne lansere den helt nye Ford Kuga, vår mest kompetente SUV hittil. Nye Ford Kuga har blitt større og byr på den absolutt nyeste teknologien."]
+
+        let i = 0; 
+        divImg.src = kugaImg[i]; 
+        divH3.innerText = kugaH3[i];
+        divP.innerText = kugaP[i];
+
+        function MONSTER () {
+            i++; 
+            if (i === kugaImg.length) {
+                i = 0;
+            }           
+            divImg.src = kugaImg[i]; 
+            divH3.innerText = kugaH3[i];
+            divP.innerText = kugaP[i];
+        };
+                
+            
+        
+
+        setInterval (MONSTER, 2000);
+    
+    
+    
+    </script>
+    
+</body>
+</html>

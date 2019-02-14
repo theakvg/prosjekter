@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+        #billy {
+            position: absolute;
+            color: cadetblue;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 1;
+        }
+
+        #lion {
+            width: 100px;
+            position: absolute;
+            top: 70%;
+        }
+    
+    
+    </style>
+</head>
+<body>
+    
+    <h1 id="billy">OHH EN OVERSKRIFT!</h1>
+
+    <img src="KJ1012-preview.jpg" id="lion" alt="">
+    <button id="start">Start</button>
+    <button id="stopp">Stopp</button>
+    <button id="revers">Reverser</button>
+    <input type="range" id="speedLion" min="1" max="5" step="0.1">
+
+    <script>
+
+        let billy = document.querySelector("#billy");
+        let lion = document.querySelector("#lion");
+        let start = document.querySelector("#start");
+        let stopp = document.querySelector("#stopp");
+        let revers = document.querySelector("#revers");
+        let speedLion = document.querySelector("#speedLion");
+
+        let billyStil = [
+            {
+                opacity: "0"
+            },
+            {
+                opacity: "1"
+            }
+        ];
+
+        billy.animate(billyStil,3000);
+    
+        let lionStil = [
+            {
+                left: "0px"
+            },
+            {
+                left: "900px"
+            }
+        ];
+        
+
+        let lionAni = lion.animate(lionStil, 4000);
+        lionAni.pause();
+
+        start.onclick = function () {
+            lionAni.play();
+        };
+        stopp.onclick = function () {
+            lionAni.pause();
+        }; 
+        revers.onclick = function () {
+            lionAni.reverse();
+        };    
+        speedLion.onchange = function () {
+            lionAni.playbackRate = speedLion.value;
+        };
+
+
+        
+
+    
+    
+    </script>
+
+
+</body>
+</html>

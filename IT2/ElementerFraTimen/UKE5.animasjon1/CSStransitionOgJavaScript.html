@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            height: 100px;
+            width: 100px;
+            background-color: coral;
+            transition: 1s;
+            margin: 20%;
+        }
+    
+    </style>
+
+</head>
+<body>
+    
+    <input type="text" id="inpFarge">
+
+    <div id="box"></div>
+
+    <script>
+        let box = document.querySelector("#box");
+        
+        let inpFarge = document.querySelector("#inpFarge");
+
+        inpFarge.oninput = function () {
+            box.style.backgroundColor = inpFarge.value;
+        };
+
+    
+    
+    </script>
+
+
+</body>
+</html>
