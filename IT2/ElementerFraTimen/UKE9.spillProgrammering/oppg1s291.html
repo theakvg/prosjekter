@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cookie Clicker</title>
+    <style>
+        #kjeks {
+            width: 250px;
+            margin-left: 0px;
+            margin-top: 0px;
+        }
+    
+    </style>
+</head>
+<body>
+    
+    <div id="divPoeng">Poeng: </div>
+    <img src="cookieBilde.png" alt="" id="kjeks">
+
+
+    <script>
+        //Referanser til HTML-elementer
+        const divPoeng = document.querySelector("#divPoeng");
+        const kjeks = document.querySelector("#kjeks");
+
+        //Globale variabler 
+        let poeng = 0;
+       
+
+        //Hendelseslyttere
+        kjeks.onclick = gameloop;
+        window.onkeydown = gameloop;
+        
+
+
+        //Funksjonsdefinisjoner 
+        function merPoeng () {
+            poeng += 10;
+            divPoeng.innerHTML = `Poeng: ${poeng}`;  
+            requestAnimationFrame(endaMerPoeng);       
+        };
+
+        function endaMerPoeng() {
+            poeng += 25;
+            divPoeng.innerHTML = `Poeng: ${poeng}`;
+            if (poeng < 500) {
+                endaMerPoeng();
+            };            
+        }
+
+        function flyttKjeks() {
+            let y = Math.random() * window.innerHeight;
+            let x = Math.random()* window.innerWidth;
+            kjeks.style.marginLeft = x + "px";
+            kjeks.style.marginTop = y + "px";
+        };
+
+        function gameloop () {
+            merPoeng();
+            flyttKjeks();
+        }
+
+    
+    </script>
+
+</body>
+</html>

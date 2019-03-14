@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #divX {
+            left: 550px;
+            top: 160px;
+            position: absolute;     
+
+        }
+        #earthImg {
+            position: absolute;
+        }
+        
+    
+    
+    
+    </style>
+</head>
+<body>
+    <button id="fly">FLYYYY aka. Take of</button>
+    <div id="backImg">
+        <img src="earth.png" id="earthImg">
+    </div>
+    <div id="divX">
+        <img src="spaceX.png" id="imgX">
+    </div>
+    
+
+
+    <script>
+
+        let backImg = document.querySelector("#backImg");
+        let divX = document.querySelector("#divX");
+        let earthImg = document.querySelector("#earthImg");
+        let fly = document.querySelector("#fly");
+     
+
+        let earthMoon = [{
+            left: "550px", 
+            top: "160px",
+            transform: "scale(1)"
+        }, 
+        {
+            left: "100px",
+            top: "50px",
+            transform: "scale(0)" 
+        }, 
+        {
+            left: "550px",
+            top: "250px",
+            transform: "scale(1)"
+        }];
+
+        let moonEarth = [{
+            left: "550px",
+            top: "250px",
+            transform: "scale(1)", 
+        }, {
+            left: "650px",
+            top: "50px",
+            transform: "scale(0)",
+            
+        }, {
+            left: "550px", 
+            top: "160px",
+            transform: "scale(1)"
+        }];
+
+        let c = 0;
+
+        function noe () {
+            if (c === 1) {
+                earthImg.src = "moon.png";
+            } else {
+                earthImg.src = "earth.png";
+            };
+        };
+        
+
+        fly.onclick = function () {
+            if (c === 0) {
+                divX.animate(earthMoon, 4000);
+                c = 1;
+                setInterval(noe, 2000);
+                divX.style.top = 250+"px";
+            } else {
+                divX.animate(moonEarth, 4000);
+                c = 0;
+                setInterval(noe, 2000);
+                divX.style.top = 160+"px";
+            };
+        };
+
+
+
+
+    
+    
+    
+    
+    
+    </script>
+
+</body>
+</html>

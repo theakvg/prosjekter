@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ponging, spill</title>
+    <style>
+
+        #spillCanvas {
+            background-color: black;
+        }
+    
+    
+    </style>
+</head>
+<body>
+
+    <canvas id="spillCanvas" width="400" height="200"></canvas>
+
+    <script>
+        
+        //Referanser til HTML-elementer
+        const spillCanvas = document.querySelector("#spillCanvas");
+        const ctx = spillCanvas.getContext("2d");
+
+         //Globale variabeler
+        ctx.fillStyle = "white";
+        ctx.fillRect(198, 4, 4, 192);
+
+        let spiller1 = {
+            bredde: 5,
+            hoyde: 20,
+            farge: "white",
+            xpos: 5,
+            ypos: spillCanvas.height/2,
+            xfart: 0,
+            yfart: 0,
+            xretning: 0,
+            yretning: 0,
+            xknapp: "ArrowUp",
+            yknapp: "ArrowDown"
+        };
+        let spiller2 = {
+            bredde: 5,
+            hoyde: 20,
+            farge: "white",
+            xpos: spillCanvas.width - 5,
+            ypos: spillCanvas.height/2,
+            xfart: 0,
+            yfart: 0,
+            xretning: 0,
+            yretning: 0,
+            xknapp: "KeyW",
+            yknapp: "KeyS"
+        };
+
+        
+
+        //Hendelseslyttere
+        window.onkeydown = gameloop;
+
+            
+            
+        
+        
+
+        //Funksjonsdefinisjon
+        
+        function gameloop (event) {
+            figurBevegelseSpiller (spiller1, event);
+            figurBevegelseSpiller (spiller2, event);
+        };
+
+        /* Av en eller annen grunn vil ikke event.code leses. Teorien er at dette har noe med at det er to paramentere inne i funkjsonen. 
+        Dette er ikke et ferdig forslag. Da jeg tror dette er en kortere kode enn det jeg nå skal sette i gang med, så lagrer jeg denne
+        slik at jeg i neste IT 2 time kan få hjelp med å se hva som er galt med denne ?*/
+
+        
+
+        function figurBevegelseSpiller (figur, event) {
+            if (event.code === figur.xknapp && figur.ypos > 0) { //Sjekker om posisjonen er nådd taket og om at piltast opp blir trykket på
+                figur.ypos = figur.ypos - figur.yfart; //flytter figuren nedover med en viss fart 
+            } else if (figur.ypos < spillCanvas.height && event.code === figur.yknapp) { //samme som over, bare motsatt
+                figur.ypos = figur.ypos + figur.yfart;
+            };
+        };
+
+
+        
+
+        
+
+        
+
+    
+    </script>
+    
+</body>
+</html>

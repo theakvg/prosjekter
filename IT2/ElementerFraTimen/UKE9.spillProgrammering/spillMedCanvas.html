@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        
+    
+    
+    
+    </style>
+</head>
+<body>
+    <canvas id="spillCanvas" width="400" height="200"></canvas>
+
+    <script>
+        //Referanser til HTML-elementer
+        const spillCanvas = document.querySelector("#spillCanvas");
+        const ctx = spillCanvas.getContext("2d");
+
+        /*
+        ctx.fillStyle = "red";
+        ctx.fillRect(10, 10, 200, 400);
+        */
+
+        //Globale variabeler
+        let firkant = {
+            bredde: 40,
+            hoyde: 50,
+            farge: "blue",
+            xpos: 10,
+            ypos: 1,
+            xfart: 1,
+            yfart: 1,
+            xretning: 2,
+            yretning: 3
+        };
+        let firkant2 = {
+            bredde: 20,
+            hoyde: 30,
+            farge: "blue",
+            xpos: 50,
+            ypos: 40,
+            xfart: 2,
+            yfart: 4,
+            xretning: 0.1,
+            yretning: 0.1
+        };
+
+        let figurFarge = ["red", "blue", "green", "pink", "brown", "yellow", "orange", "blueviolet", "coral", "black", "grey", "gold", "goldenrod", "hotpink"];
+       
+        let cy = window.innerWidth; 
+        let cx = window.innerHeight;
+
+        spillCanvas.height = cx - 20;
+        spillCanvas.width = cy - 25;
+
+        //Setup
+        gameLoop();
+
+
+
+        //Funksjonsdefinisjon
+        function gameLoop(){
+            clearCanvas();
+            sjekkKollisjon(firkant);
+            flyttFirkant(firkant);
+            tegnFirkant(firkant);
+            requestAnimationFrame(gameLoop);
+            console.log(firkant);
+        }
+
+        function tegnFirkant (figur) {
+            ctx.fillStyle = figur.farge;
+            ctx.fillRect(figur.xpos, figur.ypos, figur.bredde, figur.hoyde);
+        }
+
+        function flyttFirkant (figur) {
+            figur.xpos = figur.xpos + (figur.xretning*figur.xfart);
+            figur.ypos = figur.ypos + (figur.yretning*figur.yfart);
+        }
+
+        function fjernFirkant (figur) {
+            ctx.clearRect(figur.xpos, figur.ypos, figur.bredde, figur.hoyde);
+        }
+
+        function clearCanvas () {
+            ctx.fillStyle = "white";
+            ctx.fillRect(0,0, spillCanvas.width, spillCanvas.height);
+        }
+
+        function byttFarge (figur) {
+            let f = Math.floor(Math.random() * figurFarge.length);
+            figur.farge = figurFarge[f];
+            console.log(f);
+        }
+
+        function sjekkKollisjon(figur){
+            if (figur.xpos >= (spillCanvas.width-figur.bredde) || figur.xpos <= 0 ) {
+                figur.xretning = figur.xretning* -1;
+                byttFarge(figur);
+            }
+            if (figur.ypos >= (spillCanvas.height-figur.hoyde) || figur.ypos <= 0) {
+                figur.yretning = figur.yretning* -1;
+                byttFarge(figur);
+            }
+        }
+
+        
+    
+    </script>
+</body>
+</html>

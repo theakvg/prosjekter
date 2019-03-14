@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Regn om norske kroner til SEK, GBP og USD:</h2>
+    <input type="text" placeholder="NOK" id="nok">
+
+    <button id="btnRegn">Regn ut</button>
+    <div id="nokSek"></div>
+    <div id="nokGbp"></div>
+    <div id="nokUsd"></div>
+
+    <script>
+
+        let nok = document.querySelector("#nok");
+        
+        let btnRegn = document.querySelector("#btnRegn");
+        let nokSek = document.querySelector("#nokSek");
+        let nokGbp = document.querySelector("#nokGbp");
+        let nokUsd = document.querySelector("#nokUsd");
+
+        btnRegn.onclick = function () {
+            let norske = nok.value;
+            let s = norske*1.07;
+            let g = norske*0.089;
+            let u = norske*0.11;
+
+            nokSek.innerHTML = s.toFixed(2) + " SEK";
+            nokGbp.innerHTML = g.toFixed(2) + " GBP";
+            nokUsd.innerHTML = u.toFixed(2) + " USD";
+        }
+
+
+
+    </script>
+
+
+
+</body>
+</html>

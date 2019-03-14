@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ponging, spill</title>
+    <style>
+
+        #spillCanvas {
+            background-color: black;
+        }
+    
+    
+    </style>
+</head>
+<body>
+
+    <canvas id="spillCanvas" width="400" height="200"></canvas>
+
+    <script>
+        
+        //Referanser til HTML-elementer
+        const spillCanvas = document.querySelector("#spillCanvas");
+        const ctx = spillCanvas.getContext("2d");
+
+         //Globale variabeler
+        
+
+        let midtlinje = {
+            bredde: 4,
+            hoyde: 192,
+            xpos: 198,
+            ypos: 4,
+            farge: "white"
+        };
+
+        let spiller1 = {
+            bredde: 5,
+            hoyde: 20,
+            farge: "white",
+            xpos: 2,
+            ypos: spillCanvas.height/2,
+            xfart: 0,
+            yfart: 10,
+            xretning: 0,
+            yretning: 0,
+            xknapp: "ArrowUp",
+            yknapp: "ArrowDown"
+        };
+        let spiller2 = {
+            bredde: 5,
+            hoyde: 20,
+            farge: "white",
+            xpos: spillCanvas.width - 7,
+            ypos: spillCanvas.height/2,
+            xfart: 0,
+            yfart: 10,
+            xretning: 0,
+            yretning: 0,
+            xknapp: "KeyW",
+            yknapp: "KeyS"
+        };
+        let ball = {
+            bredde: 14,
+            hoyde: 14,
+            radius: 6,
+            farge: "red",
+            xpos: spillCanvas.width/2,
+            ypos: spillCanvas.height/2,
+            startAngle: 0,
+            endAngle: 2 * Math.PI,
+            xfart: 1,
+            yfart: 1,
+            xretning: 1,
+            yretning: 1,
+            
+        };
+
+        
+
+        //Hendelseslyttere
+        window.onkeydown = function spillerTrykker (event) {
+            if (event.code === "ArrowUp") {
+                fjernFigur (spiller1);
+                figurBevegelseOpp (spiller1);
+                tegnFigur (spiller1);
+            } else if (event.code === "ArrowDown") {
+                fjernFigur (spiller1);
+                figurBevegelseNed (spiller1);
+                tegnFigur (spiller1);
+            } else if (event.code === "KeyW") {
+                fjernFigur (spiller2);
+                figurBevegelseOpp (spiller2);
+                tegnFigur (spiller2);
+            } else if (event.code === "KeyS") {
+                fjernFigur (spiller2);
+                figurBevegelseNed (spiller2);
+                tegnFigur (spiller2);
+            }
+        };
+        gameloopBall();
+
+            
+            
+        
+        
+
+        //Funksjonsdefinisjon
+        
+        function gameloopBall () {
+            console.log("KJØR A");
+            fjernFigur(midtlinje);
+            fjernBall(ball);
+            tegnFigur(midtlinje);
+            sjekkKollisjonBallPad(ball, spiller1, spiller2);
+            sjekkKollisjonBallVegg(ball);
+            flyttBall(ball);
+            tegnBall(ball);
+            requestAnimationFrame(gameloopBall);
+        };
+
+        /*function spillerTrykker (event) {
+            if (event.code === "ArrowUp") {
+                figurBevegelseOpp (spiller1);
+            } else if (event.code === "ArrowDown") {
+                figurBevegelseNed (spiller1);
+            } else if (event.code === "KeyW") {
+                figurBevegelseOpp (spiller2);
+            } else if (event.code === "KeyS") {
+                figurBevegelseNed (spiller2);
+            }
+        }*/
+        function fjernBall (figur) {
+            ctx.clearRect(figur.xpos - figur.radius - 1, figur.ypos - figur.radius - 1, figur.bredde, figur.hoyde);
+        };
+        function fjernFigur (figur) {
+            ctx.clearRect(figur.xpos, figur.ypos, figur.bredde, figur.hoyde);
+        };
+        
+
+        function tegnFigur (figur) {
+            ctx.fillStyle = figur.farge;
+            ctx.fillRect(figur.xpos, figur.ypos, figur.bredde, figur.hoyde);
+        };
+        
+
+        function figurBevegelseOpp (figur) {
+            if (figur.ypos > 0) { //Sjekker om posisjonen er nådd taket 
+                figur.ypos = figur.ypos - figur.yfart; //flytter figuren nedover med en viss fart 
+            } 
+        };
+
+        function figurBevegelseNed (figur) {
+            if (figur.ypos < (spillCanvas.height - figur.hoyde)) { //samme som over, bare motsatt
+                figur.ypos = figur.ypos + figur.yfart;
+            };
+        };
+
+        function tegnBall (figur) {
+            ctx.strokeStyle = figur.farge; 
+            ctx.beginPath();
+            ctx.arc(figur.xpos, figur.ypos, figur.radius, figur.startAngle, figur.endAngle);
+            ctx.stroke();
+        };
+
+        function flyttBall (figur) {
+            figur.xpos = figur.xpos + (figur.xretning*figur.xfart);
+            figur.ypos = figur.ypos + (figur.yretning*figur.yfart);
+        };
+
+        function sjekkKollisjonBallVegg(figur){
+            if (figur.xpos >= (spillCanvas.width-figur.radius) || figur.xpos <= 0+figur.radius ) {
+                figur.xretning = figur.xretning* -1;
+                console.log("VEGGTREFF");
+            }
+            if (figur.ypos >= (spillCanvas.height-figur.radius) || figur.ypos <= 0+figur.radius) {
+                figur.yretning = figur.yretning* -1;
+            }
+        }; 
+        /*
+        function sjekkKollisjonBallPad(figur, spillerX, spillerY){
+            if (figur.xpos === (spillerX.xpos-figur.radius) && figur.xpos === (spillerX.ypos+figur.radius)) {
+                figur.xretning = figur.xretning* -1;
+                console.log("Redning For Spiller 1");
+            }
+            if (figur.xpos >= (spillerY.xpos-figur.radius) && figur.xpos <= (spillerY.ypos+figur.radius)) {
+                figur.xretning = figur.xretning* -1;
+                console.log("Redning For Spiller 2");
+            }
+        }; */
+
+        function sjekkKollisjonBallPad(){
+            treffPad (ball, spiller1);
+            treffPad (ball, spiller2);
+        };
+
+        function treffPad (figur, spiller) {
+            if (spiller.xpos < spillCanvas.width/2) {
+                function venstreSide (figur, spiller) {
+                    if (figur.xpos === (spiller.xpos-figur.radius-spiller.bredde) && (figur.ypos < (spiller.ypos) || figur.ypos > (spiller.ypos+spiller.hoyde))) {
+                    figur.xretning = figur.xretning* -1;
+                    console.log(figur.xpos, spiller.xpos, "VENSTRE SIDE");
+                    };
+                };
+            } else if (spiller.xpos > spillCanvas.width/2) {
+                function hoyreSide (figur, spiller) {
+                    if (figur.xpos === (spiller.xpos+figur.radius) && (figur.ypos < (spiller.ypos) || figur.ypos > (spiller.ypos+spiller.hoyde))) {
+                    figur.xretning = figur.xretning* -1;
+                    console.log(figur.xpos, spiller.xpos, "HOYRE SIDE");
+                    };
+                };
+            };
+        };
+
+
+        
+
+
+        
+
+        //GOOD LUCK, my friend :D u can do this 
+
+        
+
+    
+    </script>
+    
+</body>
+</html>
