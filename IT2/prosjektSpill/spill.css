@@ -1,0 +1,10 @@
+#gameboard {
+    background-color: brown;
+    height: 45px;
+    width: 45px;
+}
+#firkant {
+    background-color: yellow;
+    height: 10px;
+    width: 10px;
+}
