@@ -8,33 +8,450 @@
     <link rel="stylesheet" href="spill.css">
 </head>
 <body>
+    
+    <button id="startGame">Start game</button>
+    <h1>Quarto</h1>
+    <button id="bruksAnv">Bruksanvisning</button>
+    <div id="playerID">
+        <p id="spiller1">Spiller 1</p>
+        <div id="s1Brikke"></div>
+        <p id="spiller2">Spiller 2</p>
+        <div id="s2Brikke"></div>
+        <div id="divRes">
+            <p>Stillingen er:</p>
+            <p id="resultat"> vs.</p>
+        </div>
+    </div>
 
-    <h1>SPill</h1>
+    <div id="brikkeValg">
+    </div>
 
     <div id="gameboard">
-        <div id="firkant"></div>
-        <div id="firkant"></div>
-        <div id="firkant"></div>
-        <div id="firkant"></div>
-        <div id="firkant"></div>
-        <div id="firkant"></div>
-        <div id="firkant"></div>
-        <div id="firkant"></div>
-        <div id="firkant"></div>
-        <div id="firkant"></div>
-        <div id="firkant"></div>
-        <div id="firkant"></div>
-        <div id="firkant"></div>
-        <div id="firkant"></div>
-        <div id="firkant"></div>
-        <div id="firkant"></div>
+        <div class="linje">
+            <div class="firkant"></div>
+            <div class="firkant"></div>
+            <div class="firkant"></div>
+            <div class="firkant"></div>
+        </div>
+        <div class="linje">
+            <div class="firkant"></div>
+            <div class="firkant"></div>
+            <div class="firkant"></div>
+            <div class="firkant"></div>
+        </div>        
+        <div class="linje">
+            <div class="firkant"></div>
+            <div class="firkant"></div>
+            <div class="firkant"></div>
+            <div class="firkant"></div>
+        </div>
+        <div class="linje">
+            <div class="firkant"></div>
+            <div class="firkant"></div>
+            <div class="firkant"></div>
+            <div class="firkant"></div>
+        </div>
+        
     </div>
     
-
+    <div id="divBruksAnv">
+        <button id="btnX">x</button>
+        <h2>QUARTO</h2>
+        <p><b>Presentasjon:</b></p>
+        <p>-  Et spillebrett med 16 ruter</p>
+        <p>-  16 forskjellige brikker hver med 4 egenskaper: grønne eller gule, firkanta eller sirkelformet, rutenett eller ensfarget, liten sirkel eller ikke. </p>
+        <p><b>Hensikten med spillet:</b></p>
+        <p>Lage en linje av 4 brikker med minst en felles egenskap på brettet. Denne linjen kan være loddrett, vannrett eller diagonal.</p>
+        <p><b>Gjennomføring av en omgang </b></p>
+        <p>-  Spiller 1 starter først. </p>
+        <p>-  Vedkommende velger en av de 16 brikkene og gir denne til motparten. </p>
+        <p>-  Motparten plasserer denne brikken i en av rutene på brettet og velger deretter en av de 15 gjenværende brikkene som den gir til den første spilleren. </p>
+        <p>-  Den som begynte spillet, plasserer så denne brikken på en ledig rute osv. </p>
+        <p><b>Vinne en omgang </b></p>
+        <p>- Spilleren som setter den siste brikken i en rekke på 4 der alle har minst en felles egenskap vinner omgangen. </p>
+        <h3>LYKKE TIL !</h3>
+    </div>
 
 
     <script> src="spill.js"</script>
 
+    <script>
+
+        //definerte variabler 
+        
+        let gameboard = document.querySelector("#gameboard");
+        let firkant = document.querySelectorAll(".firkant");
+        let brikkeValg = document.querySelector("#brikkeValg");
+        let startGame = document.querySelector("#startGame");
+        let spiller1 = document.querySelector("#spiller1");
+        let spiller2 = document.querySelector("#spiller2");
+        let giBrikke = document.querySelector("#giBrikke");
+        let s1Brikke = document.querySelector("#s1Brikke");
+        let s2Brikke = document.querySelector("#s2Brikke");
+        let bruksAnv = document.querySelector("#bruksAnv");
+        let divBruksAnv = document.querySelector("#divBruksAnv");
+        let btnX = document.querySelector("#btnX");
+        let resultat = document.querySelector("#resultat");
+
+
+        let k = 0; // varbiabel brukes til å videreføre bildet av brikken
+        let m = 0; // vet ikke om brukes til noe
+        let o = 0;
+        let u = 0; // variabelen brukes til å videreføre hvilken brikke det er snakk om
+
+        // --- variabler blir brukt til å sjekke om noen vinner 
+        let gronn1 = 0; 
+        let firk1 = 0;
+        let grid1 = 0;
+        let litenS1 = 0;
+        let gronn2 = 0; //gul verdi
+        let firk2 = 0; //sirkel verdi
+        let grid2 = 0; //plain verdi
+        let litenS2 = 0; //ingen sirkel verdi
+        let res1 = 0; // antall vinn spiller 1
+        let res2 = 0; // antall vinn spiller 2
+
+        let valgtPlass = 0; // verdi til hvilken plass som er valgt
+        let valgtBrikke = 0; // verdien til brikka som er valgt
+        let s1 = 0; // Sjekker om det er din tur, 0 = nei, 1 = ja. 
+        let s2 = 0; // --------- // ----------
+        let svar = 0; // variabelen som sier hvem som vant
+
+        let tur = 0; //brukes som feilsikring, m/ tanke på hva som skal gjøres. 0 = velg brikke, 1 = velg plass. 
+        
+        // arrayen som inneholder de ulike brikkene, og hvilken verdi den inneholder. eks. hvis [2] er true så er brikken grønn, hvis false er den gul.
+        let spillebrikke = [
+            ["bilde", "grønn", "firkant", "grid", "litenSirkel", "plukket", "brukt", "tall"],
+            ["greenCubeGridS-01-01.jpg", true, true, true, true, false, false, 1],
+            ["greenCubeGridNoS-01.jpg", true, true, true, false, false, false, 2],
+            ["greenCubePlainS-01.jpg", true, true, false, true, false, false, 3],
+            ["greenSircelGridS-01.jpg", true, false, true, true, false, false, 4],
+            ["yellowCubeGridS-01.jpg", false, true, true, true, false, false, 5],
+            ["greenCubePlainNoS-01.jpg", true, true, false, false, false, false, 6],
+            ["greenSircelPlainS-01.jpg", true, false, false, true, false, false, 7],
+            ["yellowSircelGridS-01.jpg", false, false, true, true, false, false, 8],
+            ["greenSircelGridNoS-01.jpg", true, false, true, false, false, false, 9],
+            ["yellowCubePlainS-01.jpg", false, true, false, true, false, false, 10],
+            ["yellowCubeGridNoS-01.jpg", false, true, true, false, false, false, 11],
+            ["greenSircelPlainNoS-01.jpg", true, false, false, false, false, false, 12],
+            ["yellowCubePlainNoS-01.jpg", false, true, false, false, false, false, 13],
+            ["yellowSircelGridNoS-01.jpg", false, false, true, false, false, false, 14],
+            ["yellowSircelPlainS-01.jpg", false, false, false, true, false, false, 15],
+            ["yellowSircelPlainNoS-01.jpg", false, false, false, false, false, false, 16]
+        ];
+
+        //array som inneholder alle plasseringene. false = ikke brukt, true = brukt. [0] tilsvarer id'en. 
+        let firkanter = [
+            ["f1", false],
+            ["f2", false],
+            ["f3", false],
+            ["f4", false],
+            ["f5", false],
+            ["f6", false],
+            ["f7", false],
+            ["f8", false],
+            ["f9", false],
+            ["f10", false],
+            ["f11", false],
+            ["f12", false],
+            ["f13", false],
+            ["f14", false],
+            ["f15", false],
+            ["f16", false],
+        ];
+
+        let brikker = []; //vet ikke helt
+
+
+        // ----- FUNKSJONER ------
+
+        // funksjonen legger alle brikkene inn i div'er på forsiden. 
+        for (let i = 1; i < spillebrikke.length; i++){  
+            k = "<img src=" + "brikkerIMG/" + spillebrikke[i][0] + "></img>";
+            m = "b" + spillebrikke[i][6]; //tror ikke at den gjør noe, men redd for å ta bort
+            brikkeValg.innerHTML += '<div class="brikke">' + k + '</div>';
+        };
+        //gjør at alle plassene på brettet aka. firkanter får en id (unødvendig?)
+        for (let y = 0; y < firkanter.length; y++) {
+            firkant[y].id += firkanter[y][0];
+        };
+
+        let brikke = document.querySelectorAll(".brikke"); //henter opp class brikke, som ble innført i funkjsonen to over
+        
+        //starter gamet når klikkes på
+        startGame.onclick = function () {
+            funkStartGame();
+        };
+
+        bruksAnv.onclick = function () {
+            console.log("heei");
+            gameboard.style.opacity = 0.1;
+            divBruksAnv.style.opacity = 1; 
+            divBruksAnv.style.zIndex = 1;
+            for (let br = 0; br < brikke.length; br++) {
+                if (brikke[br].style.opacity === "0") {
+                    brikke[br].style.opacity = 0;
+                } else {
+                    brikke[br].style.opacity = 0.1;
+                }; 
+            };
+        };
+        btnX.onclick = function () {
+            gameboard.style.opacity = 1;
+            divBruksAnv.style.opacity = 0; 
+            divBruksAnv.style.zIndex = -1;
+            for (let br = 0; br < brikke.length; br++) {
+                if (brikke[br].style.opacity === "0") {
+                    brikke[br].style.opacity = 0;
+                } else {
+                    brikke[br].style.opacity = 1;
+                }; 
+            };
+        };
+        
+
+
+        function brettKlikk (u) {
+            for (let l = 0; l < firkant.length; l++) {   // gjør at du kan klikke på stedene på brettet
+                firkant[l].onclick = function () {
+                    console.log(u);
+                    if (firkanter[l][1] === false) { //sjekker om brikken er brukt eller ikke, false = ikke brukt
+                        sjekkBrett(l);
+                        tur = 0; 
+                    } else {
+                        console.log("Nah bruh");
+                    };
+                
+                };
+            };
+        };
+
+        function brikkeKlikk () {
+            for (let v = 0; v < spillebrikke.length; v++) {   // gjør at du kan klikke på de ulike brikkene
+                brikke[v].onclick = function () {
+                    if (spillebrikke[v+1][5] === false && tur === 0) { // Sjekker at den brikken som er klikket på ikke er brukt, og at det er en spiller sin tur til å trykke på en brikke
+                        spillebrikke[v+1][5] = true; // forandrer den verdien slik at den står som brukt
+                        valgtBrikke = spillebrikke[v+1][0];
+                        u = v+1;
+                        console.log(v);
+                        gyldigBrikke(v);
+                        tur = 1; 
+                    } else if (spillebrikke[v+1][5] === true) { // hvis brikken er brukt, vil ingenting skje
+                    };
+                };
+            };
+        };
+
+        function sendBrikke () { // en funkjson som plasserer bildet av brikken på riktig plass
+            firkant[valgtPlass].innerHTML = "<img src=brikkerIMG/" + valgtBrikke + "></img>";
+        };
+
+        function gyldigBrikke (v) { // en funksjon som kjører avhengig av hvem sin tur det er, s1 eller s2
+            if (s1 === 1) {
+                spiller2.style.opacity = 1; // dukker opp spiller 2 på nettsiden - indikerer at det er den sin tur
+                s2 = 1;
+                spiller1.style.opacity = 0; // spiller 1 forsvinner
+                s1 = 0;
+                s2Brikke.style.opacity = 1; // brikken som er valgt, dukker opp hos motstanderen, så det er tydelig å se hvilken brikke som er valgt
+                s2Brikke.innerHTML = "<img src=brikkerIMG/" + valgtBrikke + "></img>"; // bildet blir vist hos spilleren
+                brikke[v].style.opacity = 0; // brikken "forsvinner" fra utvalget av brikker 
+            } else if (s1 === 0) { // samme gjelder her som over, bare motsatt
+                spiller2.style.opacity = 0; 
+                s2 = 0;
+                spiller1.style.opacity = 1;
+                s1 = 1;
+                s1Brikke.style.opacity = 1;
+                s1Brikke.innerHTML = "<img src=brikkerIMG/" + valgtBrikke + "></img>";
+                brikke[v].style.opacity = 0;
+            };
+        };
+
+        function sjekkBrett (l) {
+            if (spillebrikke[u][6] === false) { // sjkker om brikken er brukt på spillebrettet enda
+                valgtPlass = l;
+                sendBrikke();
+                s1Brikke.style.opacity = 0; // brikken "forsvinner" fra spilleren 
+                s2Brikke.style.opacity = 0; // ----- // -----
+                firkanter[l][1] = true; // sier at den plassen er opptatt
+                console.log(firkanter[l][1]);
+                spillebrikke[u][6] = true; // sier at den brikken er brukt
+                firkanter[l].push(u); // pusher hvilken brikke det er som har okkupert plassen, til arrayen som inneholder plassene. 
+            } else {
+                console.log("feil i sjekkBrett");
+            };  
+            
+            sjekkOmVinn();
+        };
+
+
+        function sjekkOmVinn () { // sjekker her gjennom alle plassene og verdiene til de ulike brikkene og sjekker om noen har vunnet
+            for (let q = 0; q < 4; q++) { // kjører gjennom de fire første plassene, aka. den første raden
+                let f1 = firkanter[q][2]; // implementerer hvilken brikke som har hvilken plass
+                ifUndefined(f1); // lar koden kjøre selv om det ikke er en brikke på plassen som sjekkes           
+            };
+            sjekkVinn();
+            for (let z = 4; z < 8; z++) {
+                let f2 = firkanter[z][2];
+                ifUndefined(f2);
+            };
+            sjekkVinn();
+            for (let a = 8; a < 12; a++) {
+                let f3 = firkanter[a][2];
+                ifUndefined(f3);
+            };
+            sjekkVinn();
+            for (let n = 12; n < 16; n++) {
+                let f4 = firkanter[n][2];
+                ifUndefined(f4);
+            };
+            sjekkVinn();
+            for (let w = 0; w < 16; w = w+4) { // kjører gjennom hver fjerde brikke for å få de loddrette linjene aka. kolonnene
+                let f5 = firkanter[w][2];
+                ifUndefined(f5);
+            };
+            sjekkVinn();
+            for (let kl = 1; kl < 16; kl = kl+4) {
+                let f6 = firkanter[kl][2];
+                ifUndefined(f6);
+            };
+            sjekkVinn();
+            for (let v = 2; v < 16; v = v+4) {
+                let f7 = firkanter[v][2];
+                ifUndefined(f7);
+            };
+            sjekkVinn();
+            for (let h = 3; h < 16; h = h+4) {
+                let f8 = firkanter[h][2];
+                ifUndefined(f8);
+            };
+            sjekkVinn();
+            for (let j = 0; j < 16; j = j+5) { // kjører gjennom hver femte for å få de fire plassene på skrått
+                let f9 = firkanter[j][2];
+                ifUndefined(f9);
+            };
+            sjekkVinn();
+            for (let r = 3; r < 15; r = r+3 ) {
+                let f10 = firkanter[r][2];
+                ifUndefined(f10);
+            };
+            sjekkVinn();
+
+        };
+
+        function sjekkVerdier (s) {
+            if (spillebrikke[s][1] === true) { // sjekker om brikken som er på plassen er grønn
+                gronn1++; // hvis den er grønn, legges det til et "poeng" her, som telles opp i neste funksjon. Er det 4 "poeng" er det fire like verdier på samme rad aka. et vinn
+            } else if (spillebrikke[s][1] === false) { // sjekker om brikken på plassen er gul
+                gronn2++;
+            };
+
+            if (spillebrikke[s][2] === true) { // sjekker om det er firkant
+                firk1++;
+            } else if (spillebrikke[s][2] === false) { // sjekker om det er sirkel
+                firk2++;
+            };
+
+            if (spillebrikke[s][3] === true) { // sjekker om det er grid 
+                grid1++;
+            } else if (spillebrikke[s][3] === false) { // sjekker om det er plain
+                grid2++;
+            };
+
+            if (spillebrikke[s][4] === true) { // sjekker om det er en liten sirkel på brikken
+                litenS1++;
+            } else if (spillebrikke[s][4] === false) { // sjekker om det ikke er liten sirkel på brikken
+                litenS2++;
+            };
+        };
+
+        function sjekkVinn () { // sjekker om det er noen av linjene som har fire like av samme verdi 
+            if (gronn1 === 4) { // sjekker om det er fire grønne
+                deleteSjekkAlert("gronn");
+            } else if (firk1 === 4) { // sjekker om det er fire firkanter
+                deleteSjekkAlert("firk");
+            } else if (grid1 === 4) {
+                deleteSjekkAlert("grid");
+            } else if (litenS1 === 4) {
+                deleteSjekkAlert("litenS");
+            } else if (gronn2 === 4) {
+                deleteSjekkAlert("gul");
+            } else if (firk2 === 4) {
+                deleteSjekkAlert("sirkel");
+            } else if (grid2 === 4) {
+                deleteSjekkAlert("plain");
+            } else if (litenS2 === 4) {
+                deleteSjekkAlert("no S");
+            }
+            sjekkDelete();
+        };
+
+        function deleteSjekkAlert () { // alerter om det er noen som har vunnet, og sletter informasjonen som er inne i variablene, i tillegg til å starte gamet på nytt igjen
+            if (s1 === 1) { // sjekker om hvem sin tur det var, og hvem da som vant. 
+                svar = "SPILLER 1";
+                res1++;
+            } else if (s2 === 1) {
+                svar = "SPILLER 2";
+                res2++;
+            };
+            //setTimeout(alertVinn, 500);
+            
+            alert("Vinner er " + svar);
+            resultat.innerText = res1 + " vs. " + res2;
+            sjekkDelete();
+            funkStartGame();
+            
+        };
+
+        function sjekkDelete() { // sletter inneholdet i alle variablene
+            gronn1 = 0; 
+            firk1 = 0;
+            grid1 = 0;
+            litenS1 = 0;
+            gronn2 = 0; 
+            firk2 = 0;
+            grid2 = 0;
+            litenS2 = 0;
+        };
+
+        function ifUndefined (fT) { // sjekker om det er brikker på plassen som skal sjekkes, hvis ikke lar den koden kjøre videre
+            if (fT === undefined) {
+                console.log("faack");
+            } else {
+                sjekkVerdier(fT); // lar koden fortsette fra der den slapp
+            };
+        };
+
+        function funkStartGame() { // starter gameloopen
+            spiller1.style.opacity = 1; // viser at spiller 1 starter
+            s1 = 1; 
+            s1Brikke.innerHTML = ""; // fjerner eventuelle brikker som lå hos en av spillerne fra forrige spill
+            s2Brikke.innerHTML = "";
+            tur = 0;
+            for (let g = 1; g < spillebrikke.length; g++) { // gjør alle brikkene "klare" igje, altså ubrukt og uplassert
+                spillebrikke[g][5] = false; //ubrukt
+                spillebrikke[g][6] = false; //uplassert
+            };
+            for (let h = 0; h < firkanter.length; h++) {
+                brikke[h].style.opacity = 1; // gjør at alle brikkene vises igjen, fra der man henter de fra
+                firkant[h].innerHTML = ""; // "fjerner" alle brikkene fra plassene de sto på
+                firkanter[h][1] = false; // lar plassene bli ubrukte
+                firkanter[h].splice(2, 1); // fjerner eventuelle brikker fra arrayen
+            };
+            spiller2.style.opacity = 0; // viser tydelig at det er spiller 1 sin tur
+            brettKlikk(u); // kjører funksjonen slik at spillet er klart
+            brikkeKlikk(); // kjører funksjonen slik at spillet er klart
+        };
+
+        function alertVinn () {
+            alert("Vinner er " + svar);
+        };
+
+        
+
+        
+    
+    
+    </script>
 
 </body>
 </html>
