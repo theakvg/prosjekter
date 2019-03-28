@@ -183,20 +183,20 @@
             funkStartGame();
         };
 
-        bruksAnv.onclick = function () {
-            console.log("heei");
-            gameboard.style.opacity = 0.1;
-            divBruksAnv.style.opacity = 1; 
-            divBruksAnv.style.zIndex = 1;
-            for (let br = 0; br < brikke.length; br++) {
+        bruksAnv.onclick = function () { // viser bruksanvisningen
+            gameboard.style.opacity = 0.1; // demper brettet
+            divBruksAnv.style.opacity = 1;  //viser bruksanvisningen
+            divBruksAnv.style.zIndex = 1; // setter den i front 
+            for (let br = 0; br < brikke.length; br++) { // sjekker at de brikkene som allerede er brukt forblir "borte"
                 if (brikke[br].style.opacity === "0") {
                     brikke[br].style.opacity = 0;
                 } else {
-                    brikke[br].style.opacity = 0.1;
+                    brikke[br].style.opacity = 0.1; // demper alle brikker som ikke er brukt
                 }; 
             };
         };
-        btnX.onclick = function () {
+        
+        btnX.onclick = function () { // lukker bruksanvisningen
             gameboard.style.opacity = 1;
             divBruksAnv.style.opacity = 0; 
             divBruksAnv.style.zIndex = -1;
