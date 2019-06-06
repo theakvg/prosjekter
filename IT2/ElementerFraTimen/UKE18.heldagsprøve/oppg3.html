@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #partiAlt {
+            opacity: 0;
+            margin: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            text-align: center;
+        }
+        .btnParti {
+            margin: 5px;
+            padding: 3px;
+            width: 200px;
+        }
+        #divBek {
+            opacity: 0;
+            z-index: -1;
+        }
+        #divRes {
+            opacity: 0;
+            position: absolute;
+            top:60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            text-align: center;
+        }
+        #startside {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+
+        }
+        #heldekkende {
+            height: 500px;
+            width: 800px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+        h1 {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        th, thead, table, tr, td {
+            padding: 5px;
+            border: 1px solid black;
+            margin: none;
+            border-collapse: collapse;
+        }
+        #btnStart {
+            margin: 10px;
+        }
+    
+    
+    </style>
+</head>
+<body>
+    <h1>Skolevalg</h1>
+    <div id="heldekkende"></div>
+
+    <div id="startside">
+        <input type="text" name="" id="inpPass" placeholder="Skriv inn passordet her">
+        <button id="btnLogg">Logg inn</button>
+        <button id="btnRes">Opptelling</button>
+    </div>
+
+    <div id="partiAlt">
+        <h3>Velg parti</h3>
+        <button class="btnParti" id="btnRodt">Rødt</button>
+        <button class="btnParti" id="btnSV">Sosialistisk venstreparti</button>
+        <button class="btnParti" id="btnA">Arbeiderparti</button>
+        <button class="btnParti" id="btnSP">Senterparti</button>
+        <button class="btnParti" id="btnMDG">Miljøpartiet det grønne</button>
+        <button class="btnParti" id="btnKRF">Kristelig folkeparti</button>
+        <button class="btnParti" id="btnV">Venstre</button>
+        <button class="btnParti" id="btnH">Høyre</button>
+        <button class="btnParti" id="btnFRP">Fremskrittsparti</button>
+        <button class="btnParti" id="btnPIR">Piratparti</button>
+        <div id="divBek">
+            <p id="textBek"></p>
+            <button id="btnBek">Bekreft valg</button>
+        </div>
+    </div>
+    <div id="divRes">
+        <button id="btnStart">Startside</button>
+        <table>
+            <thead>
+                <th>Partinavn</th>
+                <th>% fra 2013</th>
+                <th>% fra i år</th>
+                <th>Forskjellen</th>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <script>
+        let btnStart = document.querySelector("#btnStart");
+        let inpPass = document.querySelector("#inpPass");
+        let btnLogg = document.querySelector("#btnLogg");
+        let btnRes = document.querySelector("#btnRes");
+        let btnParti = document.querySelectorAll(".btnParti");
+        let partiAlt = document.querySelector("#partiAlt");
+        let s = 0; //holder styr på om det er riktig passord eller ikke
+        let startside = document.querySelector("#startside");
+        let textBek = document.querySelector("#textBek");
+        let btnBek = document.querySelector("#btnBek");
+        let tbody = document.querySelector("#tbody");
+        let u = 0; //holder styr på forskjellene mellom 2013 valget og nå
+        let prosent = 0; //prosentandelen i nå-valget
+        let antall = 0; //antall stemmer
+
+        
+
+        let passord = ["P001", "P002", "P003", "P004", "P005", "P006", "P007", "P008", "P009", "P010"];
+        let stemmer = [
+            ["btnRodt", 0],
+            ["btnSv", 0],
+            ["btnA", 0],
+            ["btnSP", 0],
+            ["btnMDG", 0],
+            ["btnKRF", 0],
+            ["btnV", 0],
+            ["btnH", 0],
+            ["btnFRP", 0],
+            ["btnPIR", 0]
+        ];
+        let stem2013 = [
+            ["btnRodt", 3.7],
+            ["btnSv", 5],
+            ["btnA", 23],
+            ["btnSP", 4.2],
+            ["btnMDG", 3.8],
+            ["btnKRF", 2.8],
+            ["btnV", 6.7],
+            ["btnH", 28.2],
+            ["btnFRP", 15.6],
+            ["btnPIR", 4.3]
+        ];
+
+        btnLogg.onclick = function () { //del 1 av oppgaven
+            for (let p = 0; p < passord.length; p++) { //kjører gjennom alle passordene
+                if (passord[p] === inpPass.value) { //sjekker om passordet finnes
+                    partiAlt.style.opacity = 1;
+                    passord.splice(p, 1); //fjerner evt. passordet som er tastet inn
+                    s = 1;
+                    startside.style.opacity = 0;
+                    inpPass.value = "";
+                    startside.style.zIndex = -1;
+                    partiAlt.style.zIndex = 1;
+                };
+            };
+            if (s != 1) { //hvis passordet som er skrevet ikke finnes, kjører denne
+                alert("Du har skrevet inn feil passord, prøv igjen");
+                inpPass.value = ""; //fjerner hva som står i inputfeltet
+            };
+        };
+
+        for (let k = 0; k < btnParti.length; k++) { //kjører gjenonom alle knappene, og ser om en av knappene vlir trykket på
+            btnParti[k].onclick = function () {
+                divBek.style.opacity = 1; 
+                divBek.style.zIndex = 1;
+                textBek.innerHTML = `Du har valgt ${btnParti[k].innerText}, bekreft valget eller velg på nytt`; //skriver ut hvilken knapp som er trykket på
+                btnBek.onclick = function () { //partiet blir bekreftet
+                    s = 0;
+                    textBek.innerHTML = ""; 
+                    startside.style.opacity = 1;
+                    startside.style.zIndex = 1;
+                    partiAlt.style.opacity = 0; 
+                    partiAlt.style.zIndex = -1;
+                    for (let y = 0; y < stemmer.length; y++) { 
+                        if (btnParti[k].id === stemmer[y][0]) { //sier ifra til stemmer arrayen om at det har blitt gitt en stemme, og sjekker at den stemmen blir satt på riktig sted
+                            stemmer[y][1] = Number(stemmer[y][1]) + 1; // legger til stemmen til riktig parti
+                            antall += 1; //holder styr på antall stemmer som er gitt
+                        };
+                    };
+                };
+            };
+        };
+
+        btnRes.onclick = function () {  //kjører funksjonen når knappen: opptelling blir trykket på
+            registrer(); // kjører funkjson
+            startside.style.opacity = 0;
+            startside.style.zIndex = -1;
+            divRes.style.opacity = 1;
+            divRes.style.zIndex = 1;
+        };
+        btnStart.onclick = function() {
+            tbody.innerHTML = ""; //fjerner hva som står i rutenettet, slik at det ikke blir dobbelt nestegang
+            divRes.style.opacity = 0;
+            divRes.style.zIndex = -1;
+            startside.style.opacity = 1;
+            startside.style.zIndex = 1;
+        };
+
+        function registrer () {
+            for (let r = 0; r < stemmer.length; r++) {
+                prosent = (stemmer[r][1]/antall)*100; //gir ut prosentandelen av stemmene
+                u = prosent-stem2013[r][1];  // skriver ut forksjellen mellom de to stemmebolkene 
+                tbody.innerHTML += `<tr><td>${btnParti[r].innerText}</td><td>${stem2013[r][1]}</td><td>${prosent}</td><td>${u}</td></tr>`; //skriver det ut i rutenettet.
+            }
+            
+        };
+        
+
+
+    
+    
+    
+    
+    </script>
+
+</body>
+</html>

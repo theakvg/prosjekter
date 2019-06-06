@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Title</title>
+	<style>
+		body{
+			text-align: center;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -70%);
+		}
+		
+		#paNy{
+			position: relative;
+			display: none;
+			text-align: center;
+			
+			left: 40%;
+			
+		}
+	</style>
+</head>
+<body>
+
+<div id="spill">
+	<h1>GJETT LENGDEN</h1>
+	<video id="film" src="vedlegg/thorkildsen.mp4" width="440" height="240" controls preload="none" ></video>
+	<p>Hvor mange meter tror du Thorilsen kaster?</p>
+	<input id=inpGjett type="number">
+	<button id="btnGjett">Gjett</button>
+	
+	<div id="div2">
+		<div id="skrivUt"></div>
+		<button id="paNy">Prøv på nytt</button>
+	</div>
+	
+</div>
+
+
+
+<script>
+	var inpGjett = document.querySelector("#inpGjett");
+	var btnGjett = document.querySelector("#btnGjett");
+	var skrivUt = document.querySelector("#skrivUt");
+	var paNy = document.querySelector("#paNy");
+	
+	const kast = 90;
+	
+	btnGjett.onclick = function () {
+	    if(inpGjett.value === kast){
+	        skrivUt.innerHTML = "Helt rett! Dette kan du!";
+	    }
+	    if(inpGjett.value >= 85.5 && inpGjett.value < 95){
+	        skrivUt.innerHTML = "Meget godt tippet";
+	        paNy.style.display = "block";
+	    }
+	    if(inpGjett.value < 85.5 || inpGjett.value > 95.5){
+	        skrivUt.innerHTML = "Dessverre, dette er feil!";
+            paNy.style.display = "block";
+	    }
+		
+    };
+	
+    paNy.onclick = () => location.reload();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+        body {
+            font-family: Calibri, 'Trebuchet MS', sans-serif;
+        }
+        #slutt, #start {
+            z-index: -1;
+            background-color: grey;
+            height: 500px;
+            width: 750px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            border: solid 3px black;
+        }
+        #start {
+            z-index: 1;
+        }
+        #btnStart, #btnSPN {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+        }
+        #divWhole {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background-color: white;
+            padding: 25px;
+            padding-top: 0px;
+            height: 400px;
+            width: 600px;
+        }
+        #btnNeste {
+            position: absolute;
+            margin-top: 30px;
+            font-size: 15px;
+            top: 84%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        button {
+            background-color: white;
+        }
+        #spm {
+            font-size: 30px;
+            margin-top: 10px;
+        }
+        .lab {
+            font-size: 20px;
+        }
+        .check {
+            height: 13px;
+        }
+        #antP {
+            position: absolute;
+            top: 30%;
+            left: 35%;
+            color: white;
+        }
+        a {
+            border: none;
+            text-decoration: none;
+            color: black; 
+            font-family: Calibri, 'Trebuchet MS', sans-serif;
+        }
+    
+    
+    </style>
+</head>
+<body>
+    <a href="mainsite.html">Tilbake til start</a>
+    
+    <div id="divWhole">
+        <h3 id="spm"></h3>
+        <div id="velg">
+            <input type="radio" id="ck1" class="check" name="check">
+            <label for="ck1" class="lab"></label>
+            <p></p>
+            <input type="radio" id="ck2" class="check" name="check">
+            <label for="ck2" class="lab"></label>
+            <p></p>
+            <input type="radio" id="ck3" class="check" name="check">
+            <label for="ck3" class="lab"></label>
+            <p></p>
+            <input type="radio" id="ck4" class="check" name="check">
+            <label for="ck4" class="lab"></label>
+        </div>
+        <button id="btnNeste">Neste</button>
+    </div>
+    <div id="start">
+        <button id="btnStart">Start quiz</button>
+    </div>
+    <div id="slutt">
+        <h2 id="antP"></h2>
+        <button id="btnSPN">Start på nytt</button>
+    </div>
+
+    <script>
+        
+        let btnStart = document.querySelector("#btnStart"); 
+        let velg = document.querySelector("#velg");
+        let check = document.querySelectorAll(".check"); 
+        let spm = document.querySelector("#spm"); 
+        let btnNeste = document.querySelector("#btnNeste");
+        let lab = document.querySelectorAll(".lab");
+        let k = 0;
+        let p = 0; 
+        let btnSPN = document.querySelector("#btnSPN");
+        let antP = document.querySelector("#antP"); 
+        let start = document.querySelector("#start");
+        let slutt = document.querySelector("#slutt");
+
+
+
+        let innhold = [
+            ["Hva er felles for alle strålingskilder?", "De er levende", "De sender ut energi", "De skifter farge", "De flytter på seg", 1],
+            ["Hvor stor fart har lys og andre elektromagnetiske stråler i tomt tom?", "300 000 km/s", "50 m/s", "1 000 000 m/s", "600 km/s", 0], 
+            ["Hvordan oppstår fotoner?", "Når det blir produsert energi inne i en stjerne", "Når et elektron treffer et proton", "Når et elektron hopper opp til et skall lengre ute, fra et skall nærmere kjernen", "Når et elektron faller fra et skall lengre ute til et skall nærmere atomkjernen", 3], 
+            ["Hva går dopplereffekten ut på?", "At en katt blir låst inne i en boks, og man vet ikke om den er død eller levende", "Den oppstår når en bølgekilde beveger seg i forhold til en observatør. Bølgelengden blir kortere når nærmer seg, og lengre når kilden fjerner seg fra observatør.", "Dopplereffekten er et fenomen som skjer når gravitasjon er den eneste gjeldene kraften på et objekt. Altså når et objekt er i fritt fall.", "Dopplereffekten er at et elektron hopper fra et skall nærmere kjernen, til et skall lengre ute i kjernen, og det blir sendt ut et foton.", 1], 
+            ["Alle gjenstander på jorda sender ut elektromagnetisk stråling. Hva slags stråling er det snakk om?", "Bluetooth", "Gammastråling", "Infrarød stråling", "Radiobølger", 2], 
+            ["Hva er sammenhengen mellom nordlys og solaktivitet?", "Begge produserer lys som mennesker kan se med det blotte øyet", "Mye solaktivitet gir lite nordlys", "Solaktivitet har ingen påvirkning på nordlyset, det er kun månelys som påvirker nordlyset", "Stor solaktivitet gir mye sollys", 3], 
+            ["Hva er ozon?", "Et kjemisk stoff som har molekyler bygd opp av tre oksygenatomer, O3", "En type dans som ble funnet opp på 60-tallet", "En type elektromagnetisk stråling", "Det er det samme som nordlys", 0]
+            ];   
+
+        function skiftSpm () {
+            spm.innerHTML = innhold[k][0];
+            lab[0].innerHTML = innhold[k][1];
+            lab[1].innerHTML = innhold[k][2];
+            lab[2].innerHTML = innhold[k][3];
+            lab[3].innerHTML = innhold[k][4];
+        };
+
+        skiftSpm();
+        
+
+        btnNeste.onclick = function () {
+            for (f = 0; f < 4; f++){
+                console.log(f);
+                if (check[f].checked === true) {
+                    if (f === innhold[k][5]) {
+                        p = p + 1;
+                    };
+                };
+                check[f].checked = false;
+            };
+            if (k < innhold.length - 1) {
+                k += 1; 
+                skiftSpm();
+            } else {
+                antP.innerHTML = "Du fikk: " + p + " av 7 poeng!"
+                slutt.style.zIndex = 1;
+            };
+            console.log(k + " og " + p);
+        };
+
+        btnStart.onclick = function () {
+            start.style.zIndex = -1;
+        }
+
+        btnSPN.onclick = function () {
+            slutt.style.zIndex = -1; 
+            k = 0; 
+            p = 0; 
+            skiftSpm();
+        }; 
+
+
+    </script>
+    
+</body>
+</html>

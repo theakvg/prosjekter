@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="eksamensOppg2-2010.css">
+</head>
+<body>
+    
+    <h1>Hotellinformasjon</h1>
+
+    
+
+    <div>
+        <select name="velgHotell" id="velgHotell">
+            <option value="">Velg hotell</option>
+            <option value="Spidsbergseter">Spidsbergseter</option>
+            <option value="Rondablikk">Rondablikk</option>
+            <option value="Rondane">Rondane SPA</option>
+            <option value="Brekkeseter">Brekkeseter</option>
+            <option value="Hjerkinn">Hjerkinn</option>
+        </select>
+        <div id="divInfo">
+            <h3 id="infoH3">Informasjon</h3>
+            <ul>
+                <li id="liNavn">Navn: </li>
+                <li id="liTlf">Tlf: </li>
+                <li id="liEpost">E-post: </li>
+            </ul>
+        </div>
+        <div id="divTemp"></div>
+        <div>
+            <h4>Temperatur</h4>
+            <canvas id="canvas" width="260" height="100"></canvas>
+        </div>
+    </div>
+
+
+    <script>
+        let velgHotell = document.querySelector("#velgHotell");
+        let hotRond = document.querySelector("#hotRond");
+        let hotSpa = document.querySelector("#hotSpa");
+        let hotBrek = document.querySelector("#hotBrek");
+        let hotHjer = document.querySelector("#hotHjer");
+        let divInfo = document.querySelector("#divInfo");
+        let liNavn = document.querySelector("#liNavn");
+        let liTlf = document.querySelector("#liTlf");
+        let liEpost = document.querySelector("#liEpost");
+        let divBilde = document.querySelector("#divBilde");
+        let infoH3 = document.querySelector("#infoH3");
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+
+        let hotellInfo = [
+            ["Spidsbergseter", "61284000", "post@sgh.no", -5, -3, -2, 0, 2, 3],
+            ["Rondablikk", "61294940", "post@rondablikk.no", -8, -5, -5, -3, -3, -3],
+            ["Rondane", "61209090", "post@rondande.no", -10, -8, -8, -5, -5, -4],
+            ["Brekkeseter", "61233711", "post@brekkeseter.no", -9, -7, -5, -5, -2, 0],
+            ["Hjerkinn", "61215100", "fjellstua@hjerkinn.no", -12, -10, -9, -9, -7, -7]
+        ];
+
+        class Hotell{
+            constructor(navn, tlf, epost, bilde){
+                this.navn = navn;
+                this.tlf = tlf; 
+                this.epost = epost; 
+                this.bilde = bilde; 
+            }
+            visInfo() {
+                liNavn.innerHTML = "Navn: " + this.navn;
+                liTlf.innerHTML = "Tlf. nummer: " + this.tlf;
+                liEpost.innerHTML = "E-post: " + this.epost;
+                divInfo.style.opacity = 1; 
+                infoH3.innerHTML = "Informasjon om " + this.navn;
+            }
+        };
+        class temp{
+            constructor(d2, d3, d4, d5, d6, d7) {
+                this.d2 = d2;
+                this.d3 = d3; 
+                this.d4 = d4; 
+                this.d5 = d5; 
+                this.d6 = d6; 
+                this.d7 = d7; 
+            }
+            tegn() {
+                ctx.clearRect(0,0,300,100);
+                ctx.fillStyle = "black"; 
+                ctx.fillRect(0,50,260,1);
+                ctx.fillRect(20,50,20,this.d2*3);
+                ctx.fillRect(60,50,20,this.d3*3);
+                ctx.fillRect(100,50,20,this.d4*3);
+                ctx.fillRect(140,50,20,this.d5*3);
+                ctx.fillRect(180,50,20,this.d6*3);
+                ctx.fillRect(220,50,20,this.d7*3);
+                ctx.stroke();
+            }
+            
+        }
+
+        velgHotell.onchange = dropHotell;
+
+        function dropHotell() {
+            console.log("heii");
+            for (let r = 0; r < hotellInfo.length; r++) {
+                console.log(hotellInfo[r][0] + " og " + velgHotell.value);
+                if (hotellInfo[r][0] === velgHotell.value) {
+                    let info = new Hotell(hotellInfo[r][0], hotellInfo[r][1], hotellInfo[r][2]);
+                    info.visInfo();
+                    let tempen = new temp(hotellInfo[r][3], hotellInfo[r][4], hotellInfo[r][5], hotellInfo[r][6], hotellInfo[r][7], hotellInfo[r][8])
+                    tempen.tegn();
+                    console.log(tempen);
+                };
+            };
+        };
+        
+        
+
+        
+        
+    </script>
+</body>
+</html>

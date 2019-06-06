@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style> 
+        table {
+            padding: 10px; 
+            margin: 2px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h2>Handleliste</h2>
+
+    <p>Vare:</p>
+    <input type="text" name="" id="inpVare">
+    <p>Pris:</p>
+    <input type="number" name="" id="inpPris">
+    <p></p>
+    <b>Handleliste</b>
+    <table >
+        <thead>
+            <th>Vare</th>
+            <th>Pris</th>
+        </thead>
+        <tbody id="tbListe">
+            <th></th>
+        </tbody>
+    </table>
+
+    <script>
+
+        let inpVare = document.querySelector("#inpVare");
+        let inpPris = document.querySelector("#inpPris");
+        let tbListe = document.querySelector("#ulListe");
+
+        let vare = [];
+        let handleListe = [];
+        let varen = {};
+
+        window.onkeydown = function(event) {
+            if (event.code === "Enter") {
+                console.log("kake");
+                if (inpPris.value != "") {
+                    console.log("sjekk");
+                    vare.push([inpVare.value, inpPris.value]);                    
+                    tbListe.innerHTML += `<th>${inpVare.value}</th><th>${inpPris.value} kr</th>`;
+                    varen.navn = inpVare.value;
+                    varen.pris = Number(inpPris.value);
+                    handleListe.push(varen);
+                    inpPris.value = "";
+                    inpVare.value = "";
+                    
+                };
+            }; 
+        };
+    
+    
+    
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #kortBeg {
+            height: 500px;
+            width: 700px;
+            background-color: grey;
+            color: white;
+            z-index: 1;
+            position: absolute;
+            
+        }
+        #kortDef {
+            height: 500px; 
+            width: 700px; 
+            background-color: brown; 
+            color: white; 
+            z-index: 0;
+            position: absolute;
+        }
+        #divWhole {
+            position: absolute;
+            height: 550px;
+            width: 700px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: black;
+            padding: 10px;
+        }
+        #btns {
+            position: absolute;
+            top: 94.5%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #begrep {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 50px;
+            text-align: center;
+        }
+        #def {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+            font-size: 30px;
+            text-align: center;
+        }
+        #btnNeste, #btnTilbake {
+            background-color: white;
+            height: 25px;
+            width: 60px;
+        }
+        a {
+            border: none;
+            text-decoration: none;
+            color: black; 
+            font-family: Calibri, 'Trebuchet MS', sans-serif;
+        }
+      
+
+    
+    
+    </style>
+</head>
+<body>
+    <a href="mainsite.html">Tilbake til start</a>
+    <div id="divWhole">
+        <div id="kortBeg">
+            <h3 id="begrep"></h3>
+        </div>
+        <div id="kortDef">
+            <p id="def"></p>
+        </div>
+        <div id="btns">
+            <button id="btnTilbake">Tilbake</button>
+            <button id="btnNeste">Neste</button>
+        </div>
+    </div>
+
+    <script>
+        
+        let begrep = document.querySelector("#begrep");
+        let kortBeg = document.querySelector("#kortBeg"); 
+        let kortDef = document.querySelector("#kortDef"); 
+        let btnNeste = document.querySelector("#btnNeste");
+        let btnTilbake = document.querySelector("#btnTilbake");
+        let def = document.querySelector("#def"); 
+        let imgBeg = document.querySelector("#imgBeg"); 
+        let k = 0; 
+
+        let begDef = [["Stråling", "Stråling er energi som sendes ut fra en strålingskilde i form av bølger eller partikler."], ["Elektromagnetisk stråling", "Lys er et spesialtilfelle av elektromagnetisk stråling. Elektromagnetisk stråling trenger ikke noe stoff for å bre seg, og beveger seg i tomt rom med lysfarten 300 000 km/s"], ["Varmestråling", "Alle gjenstrander sender ut varmestråling. Bølgelengden blir bestemt av temperaturen."], ["Røntgenstråling", "Røntgenfotonene er svært energirike. Røntgenstråling kan gå gjennom gjenstander som er ugjennomtrengelige for synlig lys."], ["Energisprang og elektromagnetisk stråling", 'Vi får elektromagnetisk stråling fra et atom når elektronene rundt en atomkjerne "faller" fra et skall lenger ute til et skall nærmere atomkjernen'], ["Energikilden i stjernene", "I en stjerne er temperaturen så høy at atomkjerner kan fusjonere og frigjøre energi."], ["Solaktivitet og solstormer", "Sola sender ut både elektromagnetisk stråling og energirik pertikkelstråling"], ["Nordlys", "Nordlys oppstår når ladde partikler fra solvinden kolliderer med molekyler i jordatmosfæren og får molekylene til å sende ut lys."], ["Energibalanse", "Energibalansen har vi når jorda mottar like mye energi fra sola i form av solstråling som den selv sender ut i form av varmsestråling. Hvis energibalansen blir forskjøvet, bil temperaturen på jorda endre seg slik at balansen blir gjennopprettet."], ["Drivhuseffekten", "Drivhusgassene i atmosfæren slipper solstrålene inn, men virker som en barriere mot varmestrålingen fra jorda."], ["Ozonlaget", "Ozonlaget beskytter oss mot det meste av UV-stråling fra sola."], ["Nedbryting av ozonlaget", "Nedbryting av ozonlaget finner sted når det er kaldt og stabilt vær, sollys og klorforbindelser (KFK-gasser) i stratosfæren"]];
+
+        begrep.innerHTML = begDef[k][0];
+        def.innerHTML = begDef[k][1];
+
+        btnNeste.onclick = function () {
+            if (k < begDef.length - 1) {
+                k += 1; 
+            } else {
+                k = 0; 
+            };
+            byttOrd();
+            kortBeg.style.zIndex = 1;
+        };
+        
+        btnTilbake.onclick = function () {
+            if (k < 1) {
+                k = begDef.length - 1;
+            } else {
+                k -= 1;
+            }
+            byttOrd();
+            kortBeg.style.zIndex = 1;
+        };
+    
+        function byttOrd () {
+            begrep.innerHTML = begDef[k][0];
+            def.innerHTML = begDef[k][1];
+        };
+
+        kortBeg.onclick = function () {
+            kortBeg.style.zIndex = 0; 
+        };
+
+        kortDef.onclick = function () {
+            kortBeg.style.zIndex = 1; 
+        };
+
+    
+    </script>
+    
+</body>
+</html>

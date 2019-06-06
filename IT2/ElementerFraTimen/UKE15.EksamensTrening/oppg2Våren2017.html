@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Oppg 2 fra Eksamen våren 2017</title>
+    <style>
+        body {
+            background-color: grey;
+            color: white;
+        }
+        #div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }; 
+
+
+    
+    
+    
+    </style>
+</head>
+<body>
+
+    <div id="div">
+        <h2>Wattproduksjon pr. time</h2>
+
+        <input type="Vindstyrke" id="idVind">
+        <button id="btnVind">Sjekk watt</button>
+        <p id="pWatt"></p>
+    </div>
+
+    
+
+    <script>
+        let idVind = document.querySelector("#idVind");
+        let btnVind = document.querySelector("#btnVind");
+        let pWatt = document.querySelector("#pWatt");
+        
+
+        let verdier = [
+            ["Stille", 0, 0.2, 0],
+            ["Flau vind", 0.3, 1.5, 0],
+            ["Svak vind", 1.6, 3.3, 2],
+            ["Lett bris", 3.4, 5.4, 10],
+            ["Laber bris", 5.5, 7.9, 60],
+            ["Frisk bris", 8, 10.7, 150],
+            ["Liten kuling", 10.8, 13.8, 400], 
+            ["Stiv kuling", 13.9, 17.1, 500],
+            ["Sterk kuling", 17.2, 20.7, 0],
+            ["Liten storm", 20.8, 24.4, 0],
+            ["Full storm", 24.5, 28.4, 0],
+            ["Sterk storm", 28.5, 32.6, 0],
+            ["Orkan", 32.7, 100000, 0]
+        ];
+
+        btnVind.onclick = function () {
+            for (let y = 0; y < verdier.length; y++) {
+                if (idVind.value > verdier[y][1] && idVind.value < verdier[y][2]) {
+                    pWatt.innerHTML = "Den vindstyrken gir " + verdier[y][3] + " watt";
+                    console.log(idVind.value);
+                    console.log(verdier[y][0]);
+                };
+            };
+        };
+        
+    
+    
+    
+    
+    
+    
+    
+    </script>
+
+</body>
+</html>

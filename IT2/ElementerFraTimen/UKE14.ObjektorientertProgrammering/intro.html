@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+    
+        let statsminister = {
+            fornavn: "Erna",
+            etternavn: "Solberg",
+            parti: "Høyre", 
+            interesser: ["Sysselsetting", "Nordmenn må få flere barn", "Norske interesser i FN"],
+            fulltnavn: function() {
+                return this.fornavn + " " + this.etternavn;
+            }
+        };
+
+        let statsminister2 = {
+            fornavn: "Jens",
+            etternavn: "Stoltenberg",
+            parti: "Arbeiderpartiet", 
+            interesser: ["Sysselsetting", "Nordmenn må få færre barn", "Norske interesser i NATO"],
+            fulltnavn: function() {
+                return this.fornavn + " " + this.etternavn;
+            }
+        };
+
+        class Statsminister{
+            constructor(fornavn, etternavn, parti, interesser){
+                this.fornavn = fornavn;
+                this.etternavn = etternavn;
+                this.parti = parti;
+                this.interesser = interesser;
+            }
+            fulltnavn(){
+                document.write(this.fornavn + " " + this.etternavn);
+                document.body.style.backgroundColor = "green";
+            }
+        };
+
+
+
+        let erna = new Statsminister("Erna", "Solberg", "Høyre", ["Sysselsetting", "Nordmenn må få flere barn", "Norske interesser i FN"]);
+        let jens = new Statsminister("Jens", "Stoltenberg", "Arbeiderpartiet", ["Sysselsetting", "Nordmenn må få færre barn", "Norske interesser i NATO"]);
+        console.log(erna.fornavn + " og " + jens.fornavn);
+
+        erna.fulltnavn();
+        
+    
+    
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        
+        #divAni {
+            background-color: green;
+            width: 1000px;
+            height: 400px;
+            position: absolute;
+        }
+        #divMolle {
+            background-color: white;
+            height: 250px;
+            width: 10px;
+            position: relative;
+            top: -150px;
+            left: 169px;
+        }
+        #imgRot {
+            width: 150px;
+            top: -60px;
+            left: 100px;
+            position: relative;
+            z-index: 1;
+        }
+        #imgBjork {
+            height: 300px;
+            position: relative;
+            left: 400px;
+            top: 100px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="ramme">
+        <h1>Oppgave 1 - Eksamen vår 2017. Vær- og vindanimasjon</h1>
+        <h3>Velg en animasjon</h3>
+    
+        <input type="checkbox" name="vindtype" id="inpStille" class="inpCheck">Stille<br>
+        <input type="checkbox" name="vindtype" id="inpBris" class="inpCheck">Lett bris<br>
+        <input type="checkbox" name="vindtype" id="inpKuling" class="inpCheck">Stiv kuling<br>
+        <input type="checkbox" name="vindtype" id="inpStopp" class="inpCheck">Stopp animasjon<br> 
+
+        <div id="divAni" >
+            
+            <img src="rotere.png" id="imgRot">
+            <img src="Bjork.png" id="imgBjork">
+            <div id="divMolle"></div>
+            
+            
+        </div>
+
+    </div>
+    
+
+    <script>
+
+        let inpStille = document.querySelector("#inpStille");
+        let inpBris = document.querySelector("#inpBris");
+        let inpKuling = document.querySelector("#inpKuling");
+        let inpRot = document.querySelector("#inpRot");
+        let inpBjork = document.querySelector("#inpBjork");
+        let imgRot = document.querySelector("#imgRot");
+        let inpCheck = document.querySelector("#inpCheck");
+        let x = 0;
+
+        
+        let animasjonCSS = [
+            {transform:"rotate(0deg)"},
+            {transform:"rotate(360deg)"}
+        ];
+        let animasjonInnstillinger = {
+            duration: 3000,
+            iterations: 3
+        };
+
+        let minAni = imgRot.animate(animasjonCSS, animasjonInnstillinger);
+        minAni.pause();
+
+        inpStille.onclick = function() {
+            console.log("hei");
+            if (inpStille.checked === true) {
+                minAni.play();
+            }
+            
+        }
+
+        
+
+
+
+
+    </script>
+
+
+</body>
+</html>

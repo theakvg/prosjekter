@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #hele {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="hele">
+        <h1>Finn pris på bil</h1>
+        <select name="" id="selectBil">
+            <option value="">Velg bil</option>
+            <option value="kuga">Kuga</option>
+            <option value="cmax">C-max</option>
+            <option value="focus">Focus</option>
+            <option value="mondeo">Mondeo</option>
+        </select>
+        <p><b>Type bil</b></p>
+        <input type="radio" id="checkTrend" name="typer">Trend<br>
+        <input type="radio" id="checkTit" name="typer">Titanum<br>
+        <p><b>Tilleggspakker</b></p>
+        <input type="checkbox" id="checkFp">Familiepakke<br>
+        <input type="checkbox" name="" id="checkFap">Førerassistentpakke<br>
+        <input type="checkbox" name="" id="checkSp">Stilpakke<br>
+        <button id="btnValg">Pris</button>
+        <p id="pPris"></p>
+    </div>
+
+    <script>
+    let selectBil = document.querySelector("#selectBil");
+    let checkTrend = document.querySelector("#checkTrend");
+    let checkFp = document.querySelector("#checkFp");
+    let checkFap = document.querySelector("#checkFap");
+    let checkSp = document.querySelector("#checkSp");
+    let btnValg = document.querySelector("#btnValg");
+    let pPris = document.querySelector("#pPris");
+    let p = 0;
+
+    let bilUtvalg = [
+        ["kuga", 401000, 420000, 1000, 10200, 9200],
+        ["cmax", 320000, 335000, 1000, 9400, 3600],
+        ["focus", 255000, 325000, 900, 12500, 9000],
+        ["mondeo", 281000, 361000, 1100, 9900, 7200]
+    ];
+    btnValg.onclick = function () {
+        p = 0;
+        for (let k = 0; k < bilUtvalg.length; k++){
+            if(bilUtvalg[k][0] === selectBil.value) {
+                if(checkTrend.checked === true) {
+                    p += bilUtvalg[k][1]
+                } else if (checkTit.checked === true) {
+                    p += bilUtvalg[k][2];
+                }
+                if(checkFp.checked === true) {
+                    p += bilUtvalg[k][3];
+                }
+                if(checkFap.checked === true) {
+                    p += bilUtvalg[k][4];
+                }
+                if(checkSp.checked === true) {
+                    p += bilUtvalg[k][5]
+                };
+                pPris.innerHTML = "Pris på din bil er " + p + " kr";
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    </script>
+
+</body>
+</html>

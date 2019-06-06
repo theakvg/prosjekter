@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bestillingsverktøy matkasse</title>
+    <style>
+        body {
+            background-color: grey;
+            color: white;
+        }
+        #heleGreia {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #divValg {
+            margin: 10px;
+        }
+        th, thead, table, tr, td {
+            padding: 10px;
+            border: 1px solid black;
+            margin: none;
+            border-collapse: collapse;
+        }
+        
+    
+    </style>
+</head>
+<body>
+
+    <div id="heleGreia">
+        <h2>Bestillingsverktøy for matkasse</h2>
+
+        <div>
+            <div id="divValg">
+                <h3>Velg innhold av matkasse</h3>
+                <p>Antall middager</p>
+                <input type="radio" id="check2" class="check" name="middag">2 middager<br>
+                <input type="radio" id="check3" class="check" name="middag">3 middager<br>
+                <p>Antall mennesker</p>
+                <input type="text"id="inpAnt" placeholder="Antall mennesker">
+                <p>Annen info</p>
+                <input type="text" id="inpNavn" placeholder="Navn">
+                <input type="text" id="inpMail" placeholder="Mail">
+                <p></p>
+                <input type="text" id="inpAdresse" placeholder="Adresse">
+                <input type="text" id="inpNummer" placeholder="postnummer">
+                <input type="text" id="inpSted" placeholder="poststed">
+                <p></p>
+                <button id="sendInn">Send inn</button>
+            </div>
+            <table>
+                <thead>
+                    <th>Navn</th>
+                    <th>Mail</th>
+                    <th>Antall middager</th>
+                    <th>Antall mennesker</th>
+                    <th>Adresse</th>
+                    <th>Pris</th>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let velgKasse = document.querySelector("#velgKasse");
+        let check2 = document.querySelector("#check2");
+        let check3 = document.querySelector("#check3");
+        let inpAnt = document.querySelector("#inpAnt");
+        let inpNavn = document.querySelector("#inpNavn");
+        let inpMail = document.querySelector("#inpMail");
+        let inpAdresse = document.querySelector("#inpAdresse");
+        let inpNummer = document.querySelector("#inpNummer");
+        let inpSted = document.querySelector("#inpSted");
+        let sendInn = document.querySelector("#sendInn");
+        let middager = 0;
+        let pris = 0;
+        let tbody = document.querySelector("#tbody");
+        let check = document.querySelector(".check");
+    
+
+
+        
+
+        sendInn.onclick = function () {
+            pris = 0; 
+            middager = 0;
+            if (check2.checked === true) {
+                check3.checked = false;
+                middager = 2;
+                skjema();
+            } else if (check3.checked === true) {
+                check2.checked = false;
+                middager = 3; 
+                skjema();
+            };
+        };
+        
+        function skjema () {
+            if (inpAnt.value > 4 && inpAnt.value < 10) {
+                pris = inpAnt.value*70;
+                registrer();
+            } else if (inpAnt.value < 5) {
+                pris = inpAnt.value*80;
+                registrer();
+            } else if (inpAnt.value > 11) {
+                alert("For mange mennesker valgt!");
+            }
+        };
+
+        function registrer () {
+            tbody.innerHTML += `<tr><td>${inpNavn.value}</td><td>${inpMail.value}</td><td>${middager}</td><td>${inpAnt.value}</td><td>${inpAdresse.value + ", " + inpNummer.value + " " + inpSted.value}</td><td>${pris + " kr"}</td></tr>`;
+        };
+    
+    </script>
+
+</body>
+</html>

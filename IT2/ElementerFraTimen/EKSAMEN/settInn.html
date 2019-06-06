@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+        #divWhole {
+            width: 700px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: Calibri, 'Trebuchet MS', sans-serif;
+            text-align: center;
+            
+        }
+        p {
+            font-size: 20px;
+        }
+        #btnIgjen {
+            opacity: 0;
+        }
+        #btnSjekk {
+            opacity: 0;
+        }
+        button {
+            background-color: white; 
+        }
+        a {
+            border: none;
+            text-decoration: none;
+            color: black; 
+            font-family: Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+    
+    </style>
+</head>
+<body>
+    <a href="mainsite.html">Tilbake til start</a>
+    <div id="divWhole">
+        <h2>Sett inn riktig begrep i teksten</h2>
+        <p id="p1"></p>
+        <p id="p2"></p>
+        <p id="p3"></p>
+
+        <button id="btnSjekk">Sjekk</button>
+        <button id="btnIgjen">Prøv på nytt</button>
+        <button id="start">Start</button>
+
+
+    </div>
+
+    
+    
+
+    <script>
+        
+        let p1 = document.querySelector("#p1");
+        let p2 = document.querySelector("#p2");
+        let p3 = document.querySelector("#p3");
+        let btnSjekk = document.querySelector("#btnSjekk");
+        let btnIgjen = document.querySelector("#btnIgjen"); 
+        let start = document.querySelector("#start");
+        let DDmenu; 
+
+        let des = ["bølgelengder", "synlig lys", "langbølget", "kortbølget"];
+        let spektre = ["absorpsjonsspekter", "elektron", "emisjonsspekter", "atomkjerne", "sammerhengende spektre"];
+        let sfv = ["dopplereffekt", "spektrallinjene", "avstand", "overflatetemperatur"]; 
+        let riktig = ["bølgelengder", "kortbølget", "langbølget", "synlig lys", "elektron", "atomkjerne", "sammerhengende spektre", "emisjonsspekter", "absorpsjonsspekter", "overflatetemperatur", "spektrallinjene", "dopplereffekt", "avstand"]
+
+
+        function genOptions(best) {
+            let options = `<option> Velg begrep </option>`;
+            for (let key of best) {
+                options += `<option>${key}</option>`;
+            }
+            return options;
+        }
+        function genDropMenu(best) {
+            let drop = `<select class="DDmenu">${genOptions(best)}</select>`;
+            return drop;
+        }
+
+        start.onclick = function () {
+            p1.innerHTML = `Det elektromagnetiske spekteret består av stråling med ulike ${genDropMenu(des)}. ${genDropMenu(des)} stråling inneholder fotoner med større energi enn ${genDropMenu(des)} stråling. ${genDropMenu(des)} er en liten del av det elektromagnetiske spekteret.`;
+            p2.innerHTML = `Elektromagnetisk stråling oppstår når et ${genDropMenu(spektre)} i et ytre energinivå i et atom faller til ett energinivå nærmere ${genDropMenu(spektre)}. Glødende faste stoffer, glødende væsker og sterkt sammenpressede gasser gir ${genDropMenu(spektre)}. Vi får ${genDropMenu(spektre)} hvis vi sender strøm gjennom gass eller varmer den opp. Hvis lyset fra en kilde som gir er sammenhengende spekter, går gjennom en gass, får vi et ${genDropMenu(spektre)}. `;
+            p3.innerHTML = `Stjernenes farger gir informasjon om ${genDropMenu(sfv)}. ${genDropMenu(sfv)} er stjernenes fingeravtrykk og forteller om den kjemiske sammensetningen. Dersom linjene er forskjøvet i forhold til laboratoriebølgelengden, er stjerna i bevegelse i forhold til oss (${genDropMenu(sfv)}). Vi kan finne ${genDropMenu(sfv)} til stjernene ved parallakse, lysstyrkemetoden eller Hubbles lov. `;
+            DDmenu = document.querySelectorAll(".DDmenu"); 
+            btnIgjen.style.opacity = 1; 
+            btnSjekk.style.opacity = 1; 
+            start.style.opacity = 0;
+        };
+
+        btnSjekk.onclick = function () {
+            for (let k = 0; k < DDmenu.length; k++) {
+                if (DDmenu[k].value === riktig[k]) {
+                    DDmenu[k].style.backgroundColor = "green"; 
+                } else {
+                    DDmenu[k].style.backgroundColor = "red";
+                };
+            };
+        };
+
+        btnIgjen.onclick = function () {
+            for (let DD of DDmenu) {
+                DD.value = "Velg begrep";
+                DD.style.backgroundColor = "white";
+            };
+        };
+
+
+
+         
+        
+
+
+        
+    
+    
+    </script>
+
+
+</body>
+</html>
