@@ -69,10 +69,6 @@
             color: black; 
             font-family: Calibri, 'Trebuchet MS', sans-serif;
         }
-      
-
-    
-    
     </style>
 </head>
 <body>
@@ -101,42 +97,43 @@
         let imgBeg = document.querySelector("#imgBeg"); 
         let k = 0; 
 
+        // array som inneholder alle begrepene med definisjon
         let begDef = [["Stråling", "Stråling er energi som sendes ut fra en strålingskilde i form av bølger eller partikler."], ["Elektromagnetisk stråling", "Lys er et spesialtilfelle av elektromagnetisk stråling. Elektromagnetisk stråling trenger ikke noe stoff for å bre seg, og beveger seg i tomt rom med lysfarten 300 000 km/s"], ["Varmestråling", "Alle gjenstrander sender ut varmestråling. Bølgelengden blir bestemt av temperaturen."], ["Røntgenstråling", "Røntgenfotonene er svært energirike. Røntgenstråling kan gå gjennom gjenstander som er ugjennomtrengelige for synlig lys."], ["Energisprang og elektromagnetisk stråling", 'Vi får elektromagnetisk stråling fra et atom når elektronene rundt en atomkjerne "faller" fra et skall lenger ute til et skall nærmere atomkjernen'], ["Energikilden i stjernene", "I en stjerne er temperaturen så høy at atomkjerner kan fusjonere og frigjøre energi."], ["Solaktivitet og solstormer", "Sola sender ut både elektromagnetisk stråling og energirik pertikkelstråling"], ["Nordlys", "Nordlys oppstår når ladde partikler fra solvinden kolliderer med molekyler i jordatmosfæren og får molekylene til å sende ut lys."], ["Energibalanse", "Energibalansen har vi når jorda mottar like mye energi fra sola i form av solstråling som den selv sender ut i form av varmsestråling. Hvis energibalansen blir forskjøvet, bil temperaturen på jorda endre seg slik at balansen blir gjennopprettet."], ["Drivhuseffekten", "Drivhusgassene i atmosfæren slipper solstrålene inn, men virker som en barriere mot varmestrålingen fra jorda."], ["Ozonlaget", "Ozonlaget beskytter oss mot det meste av UV-stråling fra sola."], ["Nedbryting av ozonlaget", "Nedbryting av ozonlaget finner sted når det er kaldt og stabilt vær, sollys og klorforbindelser (KFK-gasser) i stratosfæren"]];
 
-        begrep.innerHTML = begDef[k][0];
-        def.innerHTML = begDef[k][1];
+        begrep.innerHTML = begDef[k][0]; // viser det første begrepet
+        def.innerHTML = begDef[k][1]; // legger opp til vise den første definisjonen
 
-        btnNeste.onclick = function () {
-            if (k < begDef.length - 1) {
-                k += 1; 
+        btnNeste.onclick = function () { // viser neste begrep
+            if (k < begDef.length - 1) { // sjekker om alle begrepene er blitt vist eller ikke
+                k += 1; // hvis ikke alle er vist, vis neste
             } else {
-                k = 0; 
+                k = 0;  // hvis alle er vist, gå til første
             };
-            byttOrd();
-            kortBeg.style.zIndex = 1;
+            byttOrd(); // bytter begrepet
+            kortBeg.style.zIndex = 1; // viser begrepet 
         };
         
-        btnTilbake.onclick = function () {
-            if (k < 1) {
+        btnTilbake.onclick = function () { // viser forrige begrep
+            if (k < 1) { // hvis det ikke er et forrige begrep, hvis det siste
                 k = begDef.length - 1;
-            } else {
-                k -= 1;
+            } else { // hvis det er et forrige begrep, vis dette
+                k -= 1; 
             }
-            byttOrd();
-            kortBeg.style.zIndex = 1;
+            byttOrd(); // bytter begrep
+            kortBeg.style.zIndex = 1; // viser begrepet
         };
     
-        function byttOrd () {
-            begrep.innerHTML = begDef[k][0];
-            def.innerHTML = begDef[k][1];
+        function byttOrd () { // funksjonen som bytter begrep
+            begrep.innerHTML = begDef[k][0]; // viser begrepet som tilsvarer det tallet som holder styr på hvilket begrep som er vist
+            def.innerHTML = begDef[k][1]; // viser definisjonen til begrepet som vises
         };
 
-        kortBeg.onclick = function () {
-            kortBeg.style.zIndex = 0; 
+        kortBeg.onclick = function () { // hvis begrepet blir trykket på
+            kortBeg.style.zIndex = 0; // viser definisjonen av begrepet
         };
 
-        kortDef.onclick = function () {
-            kortBeg.style.zIndex = 1; 
+        kortDef.onclick = function () { // hvis definisjonen blir trykket på
+            kortBeg.style.zIndex = 1;  // viser begrepet
         };
 
     
