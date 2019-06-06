@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+        a {
+            border: none;
+            text-decoration: none;
+            color: black; 
+            font-family: Calibri, 'Trebuchet MS', sans-serif;
+        }
+        #canvas {
+            background-color: lightblue;
+        }
+        #divWhole {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: Calibri, 'Trebuchet MS', sans-serif;
+            text-align: center;
+        }
+        #divP {
+            width: 500px;
+            position: absolute;
+            left: 15%;
+            text-align: center;
+        }
+        #btnIgjen {
+            margin-top: 10px;
+        }
+    
+    
+    </style>
+</head>
+<body>
+    <a href="mainsite.html">Tilbake til start</a>
+    <div id="divWhole">
+        <canvas id="canvas" height="500" width="700"></canvas>
+        <button id="btnIgjen">Start på nytt</button>
+        <div id="divP">
+            <p>Når vi overfører energi til et hydrogenatom, kan elektronet hoppe ut til et skall lenger unna kjernen. Når elektronet fallet innover fra et skall til et annet, frigir atomet energi. Da sender atomet ut lys i form av et foton</p>
+        </div>
+        
+    </div>
+    
+
+    <script>
+        const canvas = document.querySelector("#canvas");
+        const ctx = canvas.getContext("2d");
+        let btnIgjen = document.querySelector("#btnIgjen");
+
+
+        class atomFS{ //atomene 
+            constructor(x, y, r){
+                this.x = x; 
+                this.y = y; 
+                this.r = r;
+            }
+            tegnSirkel() { //Dette tegner den lille sirkelen
+                ctx.fillStyle = "blue";
+                ctx.strokeStyle = "blue";
+                ctx.beginPath(); 
+                ctx.arc(this.x, this.y, 15, 0, 2*Math.PI);
+                ctx.fill();
+                ctx.stroke();
+            }
+            tegnPluss() { //tegner pluss tegnet inni 
+                ctx.strokeStyle = "black";
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y - 8);
+                ctx.lineTo(this.x, this.y + 8);
+                ctx.stroke(); 
+                ctx.moveTo(this.x - 8, this.y);
+                ctx.lineTo(this.x + 8, this.y);
+                ctx.stroke();
+            }
+            tegnYSirkel(rad) { //mal for tegning av sirkel
+                ctx.strokeStyle = "white";
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, rad, 0, 2*Math.PI);
+                ctx.stroke();
+            }
+            tegnYSirkel1() { //tegner midterste sirkel
+                let rad = this.r*4;
+                this.tegnYSirkel(rad);
+            }
+            tegnYSirkel2() { //tegner innerste sirkel + elektronet
+                let rad = this.r*2.75;
+                this.tegnYSirkel(rad);
+                this.tegnElektron(rad);
+            }
+            tegnYSirkel3() { //tegner ytterste sirkel 
+                let rad = this.r*4.85;
+                this.tegnYSirkel(rad);
+            }
+            tegnElektron(rad) { //mal for elektronet
+                ctx.strokeStyle = "grey";
+                ctx.fillStyle = "grey";
+                ctx.beginPath();
+                ctx.arc(this.x + rad, this.y - rad, 3, 0, 2*Math.PI);
+                ctx.fill();
+                ctx.stroke();
+            }
+            tegnWhole(){ //tegner hele atomet
+                this.tegnSirkel();
+                this.tegnPluss();
+                this.tegnYSirkel1();
+                this.tegnYSirkel2();
+                this.tegnYSirkel3();
+            }
+            tegnPilNed(){ //tegner pilen til atom 1
+                let b = this.x + this.r*2.75; 
+                let l = this.y - this.r*2.75; 
+                let h = Math.sqrt(((this.r*4-this.r*2.75)*(this.r*4-this.r*2.75))/2); //finner ut av lengden mellom midterste og innerste ring
+                ctx.beginPath();
+                ctx.strokeStyle = "black";
+                ctx.moveTo(b, l); //starter inne i elektronet
+                ctx.lineTo(b - h, l + h); // enden av pilen 
+                ctx.lineTo(b - h + 7, l + h); // pilende, bort
+                ctx.moveTo(b - h, l + h);
+                ctx.lineTo(b - h, l + h - 7); // pilende, opp
+                ctx.stroke();
+            }
+            tegnPilOpp(){ // tegner pilen til atom 2
+                let b = this.x + this.r*2.75; 
+                let l = this.y - this.r*2.75; 
+                let h = Math.sqrt(((this.r*4.85-this.r*4)*(this.r*4.85-this.r*4))/2); // finner lengden mellom midterste og ytterste ring
+                ctx.beginPath();
+                ctx.strokeStyle = "black";
+                ctx.moveTo(b, l);
+                ctx.lineTo(b + h, l - h);
+                ctx.lineTo(b + h - 7, l - h);
+                ctx.moveTo(b + h, l - h);
+                ctx.lineTo(b + h, l - h + 7);
+                ctx.stroke();
+            }
+        }
+
+        class foton{ //fotonet
+            constructor(x, y, r, k){
+                this.x = x; 
+                this.y = y; 
+                this.r = r; 
+                this.k = k;  
+            }
+            bevegFoton(){ //beveger fotonet ved at k forandrer seg
+                let b = this.x + this.r*2.75; 
+                let l = this.y - this.r*2.75; 
+                let h = (Math.sqrt(((this.r*4-this.r*2.75)*(this.r*4-this.r*2.75))/2))/2; //finner et sted på pilen hvor fotonet "kommer" fra
+                let kx = b - h + this.k*0.55; // her brukes k til å bestemme hvor pilen går, k forandrer seg
+                let ky = l + h + this.k*0.1;  // samme her
+                ctx.beginPath();
+                ctx.strokeStyle = "red";
+                ctx.moveTo(b - h + 5, l + h);
+                ctx.lineTo(kx, ky); // bestemmer hvor pilen går
+                ctx.stroke();
+            }
+            endFoton(){
+                let b = this.x + this.r*2.75; 
+                let l = this.y - this.r*2.75; 
+                let h = (Math.sqrt(((this.r*4-this.r*2.75)*(this.r*4-this.r*2.75))/2))/2;
+                let kx = b - h + this.k*0.55;
+                let ky = l + h + this.k*0.1; 
+                ctx.beginPath();
+                ctx.strokeStyle = "red";
+                ctx.moveTo(b - h + 5, l + h);
+                ctx.lineTo(kx, ky);
+                ctx.lineTo(kx - 7, ky + 5); //pilende, bort
+                ctx.moveTo(kx, ky);
+                ctx.lineTo(kx - 5, ky - 7); //pilende, opp
+                ctx.stroke();
+            }
+        }
+
+
+        let atom1 = new atomFS(200, 250, 20); // definerer det første atomet
+        let atom2 = new atomFS(500, 250, 20); // definerer det andre atomet
+
+        function lagKjerne () {
+            atom1.tegnWhole(); // tegner det første atomet
+            atom1.tegnPilNed(); // tegner pilen til elektronet
+            atom2.tegnWhole(); // tegner det andre atomet
+            atom2.tegnPilOpp(); // tegner pilen til elektronet
+        }
+
+        lagKjerne(); // tegner alt 
+
+        function startAnim () { // funksjonen som gjør at fotonet beveger på seg
+            let j = 175; // setter lengden på fotonet som beveger seg
+            let g = 0; // definerer variabel som blir brukt til å bestemme k
+            setInterval (CS, 15); // setter tiden til fotonet
+            async function CS() { // kjører funksjonen pr tidsenhet 
+                if (g < j) { 
+                    g = g + 1;
+                    let ftn = new foton(200, 250, 20, g); // definerer variablene til det bevegede fotonet
+                    ftn.bevegFoton(); // beveger fotonet
+                } else {
+                    let ftnEnd = new foton(200, 250, 20, j); //definerer variablene til den "endelige" pilen
+                    ftnEnd.endFoton(); // tegner den endelige pilen
+                }
+            };           
+        };
+
+        startAnim(); //starter animasjonen når nettleseren åpnes
+        
+        btnIgjen.onclick = function () {
+            location.reload(); // åpner nettleseren på nytt igjen
+
+        }
+    
+    
+    </script>
+</body>
+</html>

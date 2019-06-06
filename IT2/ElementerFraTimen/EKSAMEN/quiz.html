@@ -126,7 +126,7 @@
 
 
 
-        let innhold = [
+        let innhold = [ // skriver inn alle de ulike spørsmålene, svarene og hvilket av svarene som er riktig
             ["Hva er felles for alle strålingskilder?", "De er levende", "De sender ut energi", "De skifter farge", "De flytter på seg", 1],
             ["Hvor stor fart har lys og andre elektromagnetiske stråler i tomt tom?", "300 000 km/s", "50 m/s", "1 000 000 m/s", "600 km/s", 0], 
             ["Hvordan oppstår fotoner?", "Når det blir produsert energi inne i en stjerne", "Når et elektron treffer et proton", "Når et elektron hopper opp til et skall lengre ute, fra et skall nærmere kjernen", "Når et elektron faller fra et skall lengre ute til et skall nærmere atomkjernen", 3], 
@@ -136,46 +136,43 @@
             ["Hva er ozon?", "Et kjemisk stoff som har molekyler bygd opp av tre oksygenatomer, O3", "En type dans som ble funnet opp på 60-tallet", "En type elektromagnetisk stråling", "Det er det samme som nordlys", 0]
             ];   
 
-        function skiftSpm () {
+        function skiftSpm () { //skrifter spørsmål hver gang funksjonen kjører
             spm.innerHTML = innhold[k][0];
             lab[0].innerHTML = innhold[k][1];
             lab[1].innerHTML = innhold[k][2];
             lab[2].innerHTML = innhold[k][3];
             lab[3].innerHTML = innhold[k][4];
         };
-
-        skiftSpm();
-        
+       
 
         btnNeste.onclick = function () {
             for (f = 0; f < 4; f++){
-                console.log(f);
-                if (check[f].checked === true) {
-                    if (f === innhold[k][5]) {
-                        p = p + 1;
+                if (check[f].checked === true) { //sjekker hvilket alternativ som er trykket på
+                    if (f === innhold[k][5]) { // sjekker om alternativet er riktig
+                        p = p + 1; // hvis riktig, teller den et ekstra poeng
                     };
                 };
-                check[f].checked = false;
+                check[f].checked = false; // avsjekker det alternativet som er trykket på for neste spørmål
             };
-            if (k < innhold.length - 1) {
-                k += 1; 
-                skiftSpm();
+            if (k < innhold.length - 1) { //hvis antall spørsmål som er vist ikke overstiger antall totale spørsmål, kjør funksjon
+                k += 1;  // holder telling på hvor mange spørsmål som er stilt
+                skiftSpm(); //kjører funksjonen for å vise neste spørsmål
             } else {
-                antP.innerHTML = "Du fikk: " + p + " av 7 poeng!"
-                slutt.style.zIndex = 1;
+                antP.innerHTML = "Du fikk: " + p + " av " + innhold.length + " poeng!" // viser antall poeng av antall mulige poeng
+                slutt.style.zIndex = 1; // viser den avsluttende siden
             };
-            console.log(k + " og " + p);
         };
 
-        btnStart.onclick = function () {
-            start.style.zIndex = -1;
-        }
+        btnStart.onclick = function () { // når trykket på - starter quizen
+            start.style.zIndex = -1; // fjerner start siden
+            skiftSpm(); // kjører funksjonen som viser spørsmålene
+        };
 
-        btnSPN.onclick = function () {
-            slutt.style.zIndex = -1; 
-            k = 0; 
-            p = 0; 
-            skiftSpm();
+        btnSPN.onclick = function () { // når trykket på - starter quizen på nytt
+            slutt.style.zIndex = -1; // fjerner sluttsiden
+            k = 0; // setter antall spørsmål stilt til 0
+            p = 0; // setter antall poeng til null
+            skiftSpm(); // starter spørsmålstilingen
         }; 
 
 
