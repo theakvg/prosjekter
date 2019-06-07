@@ -178,8 +178,8 @@
         }
 
 
-        let atom1 = new atomFS(200, 250, 20); // definerer det første atomet
-        let atom2 = new atomFS(500, 250, 20); // definerer det andre atomet
+        let atom1 = new atomFS(500, 250, 20); // definerer det første atomet
+        let atom2 = new atomFS(200, 250, 20); // definerer det andre atomet
 
         function lagKjerne () {
             atom1.tegnWhole(); // tegner det første atomet
@@ -197,10 +197,10 @@
             async function CS() { // kjører funksjonen pr tidsenhet 
                 if (g < j) { 
                     g = g + 1;
-                    let ftn = new foton(200, 250, 20, g); // definerer variablene til det bevegede fotonet
+                    let ftn = new foton(500, 250, 20, g); // definerer variablene til det bevegede fotonet
                     ftn.bevegFoton(); // beveger fotonet
                 } else {
-                    let ftnEnd = new foton(200, 250, 20, j); //definerer variablene til den "endelige" pilen
+                    let ftnEnd = new foton(500, 250, 20, j); //definerer variablene til den "endelige" pilen
                     ftnEnd.endFoton(); // tegner den endelige pilen
                 }
             };           

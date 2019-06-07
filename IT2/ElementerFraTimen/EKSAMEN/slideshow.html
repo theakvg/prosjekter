@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-
+        body {
+            font-family: Calibri, 'Trebuchet MS', sans-serif
+        }
         #kortBeg {
             height: 500px;
             width: 700px;
@@ -25,18 +27,26 @@
             position: absolute;
         }
         #divWhole {
-            position: absolute;
             height: 550px;
             width: 700px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             background-color: black;
             padding: 10px;
         }
+        #rest {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        #forklaring {
+            margin-top: 20px;
+            width: 400px;
+            margin-left: 25%;
+        }
         #btns {
             position: absolute;
-            top: 94.5%; 
+            top: 84%; 
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -73,19 +83,21 @@
 </head>
 <body>
     <a href="mainsite.html">Tilbake til start</a>
-    <div id="divWhole">
-        <div id="kortBeg">
-            <h3 id="begrep"></h3>
+    <div id="rest">
+        <div id="divWhole">
+            <div id="kortBeg">
+                <h3 id="begrep"></h3>
+            </div>
+            <div id="kortDef">
+                <p id="def"></p>
+            </div>
+            <div id="btns">
+                <button id="btnTilbake">Tilbake</button>
+                <button id="btnNeste">Neste</button>
+            </div>
         </div>
-        <div id="kortDef">
-            <p id="def"></p>
-        </div>
-        <div id="btns">
-            <button id="btnTilbake">Tilbake</button>
-            <button id="btnNeste">Neste</button>
-        </div>
+        <p id="forklaring"><b>Trykk</b> på kortet for å vise definisjon. <b>Trykk</b> på neste for å vise ett nytt begrep. <b>Trykk</b> tilbake for å vise forrige begrep</p>
     </div>
-
     <script>
         
         let begrep = document.querySelector("#begrep");
